@@ -13,7 +13,18 @@ def get_password(request, url, login):
 	return HttpResponse(result.Password)
 
 @csrf_exempt	
-def add_user(request, username, passwordhash):
+def add_user(request):
+	username = request.POST['username']
+	passwordhash = request.POST['passwordhash']
 	User.objects.create(User_name = username, Master_password_hash = passwordhash)
 	return HttpResponse(0)
 	
+def authenticate(request):
+	print(request.GET)
+	username = request.GET['username']
+	passwordhash = request.GET['passwordhash']
+	user = User.objects.get(User_name = username)
+	if str(user.Master_password_hash) == passwordhash:
+		return HttpResponse(1)
+	else:
+		return HttpResponse(0)
