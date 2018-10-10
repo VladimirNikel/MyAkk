@@ -19,6 +19,7 @@ class Login(models.Model):
 class Pair(models.Model):
 	pair_id = models.AutoField(primary_key = True, unique = True, null = False)
 	login_id = models.ForeignKey('Login', on_delete = models.CASCADE)
+	resource_id = models.ForeignKey('Resource', on_delete = models.CASCADE)
 	
 	def __str__(self):
 		return self.pair_id
@@ -27,3 +28,13 @@ class Main_record(models.Model):
 	pair_id = models.ForeignKey('Pair', on_delete = models.CASCADE, primary_key = True)
 	Password = models.CharField(max_length = 50, null = False)
 	Change_date = models.DateTimeField(auto_now = True, null = False)
+	user_id = models.ForeignKey('User', on_delete = models.CASCADE)
+	
+	def __str__(self):
+		return self.pair_id
+	
+class User(models.Model):
+	user_id = models.AutoField(primary_key = True, unique = True, null = False)
+	User_name = models.CharField(max_length = 30, unique = True, null = False)
+	Master_password_hash = models.BigIntegerField(null = False)
+	
