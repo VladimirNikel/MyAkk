@@ -37,4 +37,6 @@ class User(models.Model):
 	user_id = models.AutoField(primary_key = True, unique = True, null = False)
 	User_name = models.CharField(max_length = 30, unique = True, null = False)
 	Master_password_hash = models.BigIntegerField(null = False)
+	Authentication_sequence = models.BinaryField(null = True)
+	Open_key = models.BinaryField(null = False)
 	
