@@ -3,6 +3,7 @@
 #include <QMenuBar>
 #include <QAction>
 #include "login_window.h"
+#include "adddata.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -20,6 +21,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->unhide, SIGNAL(triggered()), this, SLOT(action()));
     connect(ui->hide, SIGNAL(triggered()), this, SLOT(action()));
     connect(ui->change_data, SIGNAL(triggered()), this, SLOT(action()));
+    connect(ui->add_data, SIGNAL(triggered()), this, SLOT(on_addData_clicked()));
     //===========================================================
 
     //==========действия=для=меню=Резервное копирование==========
@@ -38,7 +40,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
 }
-
+void MainWindow::showwin(){
+    this->show();
+}
 
 
 MainWindow::~MainWindow()
@@ -50,13 +54,14 @@ void MainWindow::show_window_login(){
     Login_window login_wind;
     login_wind.setModal(true);
     login_wind.exec();
-    ui->label->setText("her");
-    if(allowedWork==true){
-        ui->label->setText("Получилось");
-    }
-    else ui->label->setText("Нет");
 
 }
 
 
 
+
+void MainWindow::on_addData_clicked(){
+    addData a;
+    a.setModal(true);
+    a.exec();
+}

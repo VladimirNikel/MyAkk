@@ -16,10 +16,17 @@ public:
     ~MainWindow();
     bool allowedWork=false;
 
+public slots:
+    void showwin();
+
+
 private slots:
     void show_window_login();
 
 
+
+
+    void on_addData_clicked();
 
 private:
     Ui::MainWindow *ui;

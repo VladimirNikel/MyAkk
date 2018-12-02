@@ -18,22 +18,17 @@
     <normaloff>:/photo/lighthouse.ico</normaloff>:/photo/lighthouse.ico</iconset>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QLabel" name="label">
+   <widget class="QToolButton" name="addData">
     <property name="geometry">
      <rect>
-      <x>230</x>
-      <y>210</y>
-      <width>261</width>
-      <height>111</height>
+      <x>704</x>
+      <y>10</y>
+      <width>111</width>
+      <height>21</height>
      </rect>
     </property>
-    <property name="font">
-     <font>
-      <pointsize>15</pointsize>
-     </font>
-    </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string>Добавить данные</string>
     </property>
    </widget>
   </widget>
@@ -71,6 +66,7 @@
     <addaction name="unhide"/>
     <addaction name="hide"/>
     <addaction name="separator"/>
+    <addaction name="add_data"/>
     <addaction name="change_data"/>
    </widget>
    <widget class="QMenu" name="perform_backup">
@@ -146,6 +142,15 @@
    </property>
    <property name="text">
     <string>О программе</string>
+   </property>
+  </action>
+  <action name="add_data">
+   <property name="icon">
+    <iconset resource="resourse.qrc">
+     <normaloff>:/photo/add.ico</normaloff>:/photo/add.ico</iconset>
+   </property>
+   <property name="text">
+    <string>Добавить данные</string>
    </property>
   </action>
  </widget>

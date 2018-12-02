@@ -2,7 +2,6 @@
 #include "ui_login_window.h"
 #include <QtSql>
 #include <QMessageBox>
-#include "mainwindow.h"
 
 Login_window::Login_window(QWidget *parent) :
     QDialog(parent),
@@ -43,6 +42,7 @@ void Login_window::on_buttonEntry_clicked()
     if ((login == "Nikel") && (password == "12345")){
         QMessageBox::information(this, "Вход осуществлен", "Вы успешно авторизированны.");
         resultAutorization = true;
+        emit openWindow();
     }
     else {
         QMessageBox::warning(this,"Вход не выполнен","Проверьте введенные данные и повторите попытку.");
