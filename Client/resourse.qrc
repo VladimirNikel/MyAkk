@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/photo">
+        <file>lighthouse.ico</file>
+        <file>Авторизация.ico</file>
+        <file>Авторизация2.ico</file>
+        <file>Замок-закрытый.ico</file>
+        <file>Открытый-замок.ico</file>
+        <file>support.ico</file>
+        <file>info.ico</file>
+    </qresource>
+</RCC>
