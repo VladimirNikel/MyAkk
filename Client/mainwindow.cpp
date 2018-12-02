@@ -54,7 +54,7 @@ void MainWindow::show_window_login(){
     if(allowedWork==true){
         ui->label->setText("Получилось");
     }
-    else ui->label->setText("Нихуя");
+    else ui->label->setText("Нет");
 
 }
 
