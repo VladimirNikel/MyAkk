@@ -6,8 +6,9 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    MainWindow w;
-    Login_window lo;
+    QString *name = new QString;
+    MainWindow w(nullptr, name);
+    Login_window lo(nullptr, name);
     lo.show();
     QObject::connect(&lo,SIGNAL(openWindow()),&w,SLOT(showwin()));
 

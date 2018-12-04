@@ -5,11 +5,12 @@
 #include <QSqlQuery>
 
 
-addData::addData(QWidget *parent) :
+addData::addData(QWidget *parent, QString *name) :
     QDialog(parent),
     ui(new Ui::addData)
 {
     ui->setupUi(this);
+    this->name = name;
 
 
 

@@ -7,9 +7,7 @@
 #include <QSqlQuery>
 
 
-//#include <Qssl>
-
-Login_window::Login_window(QWidget *parent) :
+Login_window::Login_window(QWidget *parent, QString *name):
     QDialog(parent),
     ui(new Ui::Login_window)
 {
@@ -19,6 +17,7 @@ Login_window::Login_window(QWidget *parent) :
     ui->buttonEntry->setEnabled(false);
     connect(ui->inputLogin,SIGNAL(textChanged(QString)),this,SLOT(button_enable()));
     connect(ui->inputPassword,SIGNAL(textChanged(QString)),this,SLOT(button_enable()));
+    this->name = name;
 
 }
 
@@ -34,10 +33,6 @@ void Login_window::button_enable(){
 Login_window::~Login_window()
 {
     delete ui;
-}
-
-bool Login_window::transferResultAutorization(){
-    return resultAutorization;
 }
 
 void Login_window::on_buttonEntry_clicked()
@@ -80,14 +75,14 @@ void Login_window::on_buttonEntry_clicked()
 
     if(hash_base == pass_hash){
         QMessageBox::information(this, "Вход осуществлен", "Вы успешно авторизированны.");
-        resultAutorization = true;
+        *name = login;
         emit openWindow();
         db.close();
         close();
     }
     else {
         QMessageBox::warning(this,"Вход не выполнен","Проверьте введенные данные и повторите попытку.");
-        resultAutorization = false;
+        *name = "";
     }
 
 

@@ -12,9 +12,10 @@ class Login_window : public QDialog
     Q_OBJECT
 
 public:
-    explicit Login_window(QWidget *parent = nullptr);
+    explicit Login_window(QWidget *parent = nullptr, QString *name = nullptr);
     ~Login_window();
-    bool resultAutorization = false;
+    QString *name;
+
 
 signals:
     void openWindow();
@@ -22,7 +23,7 @@ signals:
 
 public slots:
     void button_enable();
-    bool transferResultAutorization();
+
 
 private slots:
     void on_buttonEntry_clicked();

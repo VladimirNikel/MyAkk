@@ -12,8 +12,9 @@ class addData : public QDialog
     Q_OBJECT
 
 public:
-    explicit addData(QWidget *parent = nullptr);
+    explicit addData(QWidget *parent = nullptr, QString *name = nullptr);
     ~addData();
+    QString *name;
 
 private slots:
     void on_toolButton_clicked();

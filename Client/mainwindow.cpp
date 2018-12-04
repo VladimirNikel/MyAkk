@@ -4,12 +4,14 @@
 #include <QAction>
 #include "login_window.h"
 #include "adddata.h"
+#include <QDebug>
 
-MainWindow::MainWindow(QWidget *parent) :
+MainWindow::MainWindow(QWidget *parent, QString *name) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    this->name = name;
 
     //================действия=для=меню=Файл=====================
     connect(ui->login, SIGNAL(triggered()), this, SLOT(show_window_login()));
@@ -38,12 +40,11 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
 
-
 }
 void MainWindow::showwin(){
     this->show();
+    qDebug()<<"(mainwindows) name = "<<(*name);
 }
-
 
 MainWindow::~MainWindow()
 {
@@ -51,7 +52,8 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::show_window_login(){
-    Login_window login_wind;
+
+    Login_window login_wind(nullptr, name);
     login_wind.setModal(true);
     login_wind.exec();
 
