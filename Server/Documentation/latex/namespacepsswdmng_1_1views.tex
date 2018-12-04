@@ -58,6 +58,8 @@ def \textbf{ change\+\_\+password} (request)
 {\bfseries Authentification error}, если запрос не прошёл аутентификацию 
 
 {\bfseries 0}, если данные успешно дабавлены 
+
+{\bfseries Error message} – сообщение о непредвиденной ошибке с указаниями возможных действий пользователя по её устранению 
 \end{DoxyReturn}
 \begin{DoxyNote}{Заметки}
 Если данные, указанные в запросе, не существуют в базе (за исключением имени пользователя), они будут добавлены. 
@@ -86,9 +88,11 @@ def \textbf{ change\+\_\+password} (request)
 \begin{DoxyReturn}{Возвращает}
 {\bfseries Authentification error}, если запрос не прошёл аутентификацию 
 
-{\bfseries 0}, если пользователь добавлен успешно 
+{\bfseries Sucsess message} – сообщение об успешном добавлении пользователя, если пользователь добавлен успешно 
 
-{\bfseries 1}, если такое имя пользователя уже зарегистрировано в системе или является зарезервированным 
+{\bfseries User exists} – сообщение о существовании такого пользователя, если такое имя пользователя уже зарегистрировано в системе или является зарезервированным 
+
+{\bfseries Error message} – сообщение о непредвиденной ошибке с указаниями возможных действий пользователя по её устранению 
 \end{DoxyReturn}
 \begin{DoxyNote}{Заметки}
 Допустимы только имена, под которыми ещё не были зарегистрированы пользователи в системе. Также запрещено имя {\ttfamily sys}, т.\+к. оно зарезервировано для нужд системы. 
@@ -120,6 +124,8 @@ def \textbf{ change\+\_\+password} (request)
 {\bfseries 0}, если пользователь успешно прошёл аутентификацию 
 
 {\bfseries 1}, аутентификация пользователя провалена 
+
+{\bfseries Error message} – сообщение о непредвиденной ошибке с указаниями возможных действий пользователя по её устранению 
 \end{DoxyReturn}
 \mbox{\label{namespacepsswdmng_1_1views_ac2dd817b09df21ef0d639199f794656d}} 
 \index{psswdmng\+::views@{psswdmng\+::views}!authentificate@{authentificate}}
@@ -143,6 +149,8 @@ def \textbf{ change\+\_\+password} (request)
 {\bfseries 0}, если запрос прошёл аутентификацию 
 
 {\bfseries 1}, если запрос не прошёл аутентификацию 
+
+{\bfseries -\/1},если возникла непредвиденная ошибка 
 \end{DoxyReturn}
 \mbox{\label{namespacepsswdmng_1_1views_a2a0f4820fa5b24534e02581bacc53617}} 
 \index{psswdmng\+::views@{psswdmng\+::views}!change\+\_\+password@{change\+\_\+password}}
@@ -171,6 +179,8 @@ def \textbf{ change\+\_\+password} (request)
 {\bfseries Authentification error}, если запрос не прошёл аутентификацию 
 
 {\bfseries 0}, если замена пароля произведена успешно 
+
+{\bfseries Error message} – сообщение о непредвиденной ошибке с указаниями возможных действий пользователя по её устранению 
 \end{DoxyReturn}
 \mbox{\label{namespacepsswdmng_1_1views_a38563d05f60414abbf1e16b4b3a2e4a7}} 
 \index{psswdmng\+::views@{psswdmng\+::views}!get\+\_\+authentication\+\_\+sequence@{get\+\_\+authentication\+\_\+sequence}}
@@ -189,6 +199,8 @@ def \textbf{ change\+\_\+password} (request)
 \end{DoxyParams}
 \begin{DoxyReturn}{Возвращает}
 {\bfseries enc\+\_\+auth\+\_\+seq} – зашифрованная последовательность байт, передаваемая пользователю для аутентификации запроса 
+
+{\bfseries Error message} – сообщение о непредвиденной ошибке с указаниями возможных действий пользователя по её устранению 
 \end{DoxyReturn}
 \mbox{\label{namespacepsswdmng_1_1views_ac84061d736cf49b655050b89b9e2fe2a}} 
 \index{psswdmng\+::views@{psswdmng\+::views}!get\+\_\+password@{get\+\_\+password}}
@@ -215,4 +227,6 @@ def \textbf{ change\+\_\+password} (request)
 {\bfseries Authentification error}, если запрос не прошёл аутентификацию 
 
 {\bfseries Password} – запрошенный пароль пользователя, если запрос прошёл успешно 
+
+{\bfseries Error message} – сообщение о непредвиденной ошибке с указаниями возможных действий пользователя по её устранению 
 \end{DoxyReturn}
