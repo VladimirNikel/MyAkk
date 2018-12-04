@@ -1,0 +1,34 @@
+\section{Класс psswdmng.\+models.\+Main\+\_\+record}
+\label{classpsswdmng_1_1models_1_1_main__record}\index{psswdmng.\+models.\+Main\+\_\+record@{psswdmng.\+models.\+Main\+\_\+record}}
+Граф наследования\+:psswdmng.\+models.\+Main\+\_\+record\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classpsswdmng_1_1models_1_1_main__record}
+\end{center}
+\end{figure}
+\subsection*{Открытые члены}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\label{classpsswdmng_1_1models_1_1_main__record_a405fd695f2ac8a806a5cadc08e67307b}} 
+def {\bfseries \+\_\+\+\_\+str\+\_\+\+\_\+} (self)
+\end{DoxyCompactItemize}
+\subsection*{Статические открытые данные}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\label{classpsswdmng_1_1models_1_1_main__record_a1b29e178a49dcb508eae6eb205d2d0de}} 
+{\bfseries pair\+\_\+id} = models.\+Foreign\+Key(\textquotesingle{}\textbf{ Pair}\textquotesingle{}, on\+\_\+delete = models.\+C\+A\+S\+C\+A\+DE, primary\+\_\+key = True)
+\item 
+\mbox{\label{classpsswdmng_1_1models_1_1_main__record_a078d0dae3283df008da48d747b5553c8}} 
+{\bfseries Password} = models.\+Char\+Field(max\+\_\+length = 50, null = False)
+\item 
+\mbox{\label{classpsswdmng_1_1models_1_1_main__record_af2079a87752637d69416d08055ba4643}} 
+{\bfseries Change\+\_\+date} = models.\+Date\+Time\+Field(auto\+\_\+now = True, null = False)
+\item 
+\mbox{\label{classpsswdmng_1_1models_1_1_main__record_a9bf44d5ad2319a9e6f51d4ebadf6678f}} 
+{\bfseries user\+\_\+id} = models.\+Foreign\+Key(\textquotesingle{}\textbf{ User}\textquotesingle{}, on\+\_\+delete = models.\+C\+A\+S\+C\+A\+DE)
+\end{DoxyCompactItemize}
+
+
+Объявления и описания членов класса находятся в файле\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Django projects/\+Password manager/\+Server/psswdmng/models.\+py\end{DoxyCompactItemize}

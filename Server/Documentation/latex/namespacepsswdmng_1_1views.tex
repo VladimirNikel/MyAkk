@@ -1,0 +1,218 @@
+\section{Пространство имен psswdmng.\+views}
+\label{namespacepsswdmng_1_1views}\index{psswdmng.\+views@{psswdmng.\+views}}
+\subsection*{Функции}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\label{namespacepsswdmng_1_1views_ac351e00c39da2dbfca96d83f2b25bee0}} 
+def \textbf{ index} (request)
+\begin{DoxyCompactList}\small\item\em Обработчик http-\/запроса на получение стартовой страницы \end{DoxyCompactList}\item 
+def \textbf{ get\+\_\+password} (request)
+\begin{DoxyCompactList}\small\item\em Обработчик http-\/запроса на выдачу пароля от ресурса \end{DoxyCompactList}\item 
+def \textbf{ add\+\_\+user} (request)
+\begin{DoxyCompactList}\small\item\em Обработчик http-\/запроса на добавление нового пользователя \end{DoxyCompactList}\item 
+def \textbf{ authenticate} (request)
+\begin{DoxyCompactList}\small\item\em Обработчик http-\/запроса на аутентификацию пользователя, сделавшего попытку выполнить вход в систему с программы-\/клиента \end{DoxyCompactList}\item 
+def \textbf{ add\+\_\+password} (request)
+\begin{DoxyCompactList}\small\item\em Обработчик http-\/запроса на добавление основных данных (адрес ресурса, логин и пароль пользователя на ресурсе) \end{DoxyCompactList}\item 
+def \textbf{ get\+\_\+authentication\+\_\+sequence} (request)
+\begin{DoxyCompactList}\small\item\em Обработчик http-\/запроса на добавление основных данных (адрес ресурса, логин и пароль пользователя на ресурсе) \end{DoxyCompactList}\item 
+def \textbf{ authentificate} (auth\+\_\+seq, username)
+\begin{DoxyCompactList}\small\item\em Функция, выполняющая аутентификацию запроса ~\newline
+ \end{DoxyCompactList}\item 
+def \textbf{ change\+\_\+password} (request)
+\begin{DoxyCompactList}\small\item\em Обработчик http-\/запроса на замену пароля от ресурса \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Подробное описание}
+\begin{DoxyVerb}В данном файле описан набор функций-обработчиков http-запросов к серверу, а таке вспомогательных функций, необходимых для корректной работы сервера.
+Все описанные аргументы функций-обработчиков http-запросов заключены в единственном, передаваемом каждой каждой функции, аргументе request, представляющем
+собой словарь, где ключами являются названия аргументов.
+\end{DoxyVerb}
+ 
+
+\subsection{Функции}
+\mbox{\label{namespacepsswdmng_1_1views_a7e2a55793835ef1cde007d8d2f6d3520}} 
+\index{psswdmng\+::views@{psswdmng\+::views}!add\+\_\+password@{add\+\_\+password}}
+\index{add\+\_\+password@{add\+\_\+password}!psswdmng\+::views@{psswdmng\+::views}}
+\subsubsection{add\+\_\+password()}
+{\footnotesize\ttfamily def psswdmng.\+views.\+add\+\_\+password (\begin{DoxyParamCaption}\item[{}]{request }\end{DoxyParamCaption})}
+
+
+
+Обработчик http-\/запроса на добавление основных данных (адрес ресурса, логин и пароль пользователя на ресурсе) 
+
+Тип запроса\+: {\bfseries P\+O\+ST} 
+\begin{DoxyParams}{Аргументы}
+{\em auth\+\_\+seq} & Список (массив) чисел, представляющий собой байты расшифрованной аутентификационной последовательности, выданной клиентскому приложению \\
+\hline
+{\em user} & Имя пользователя, от которого поступает запрос \\
+\hline
+{\em url} & U\+R\+L-\/адрес ресурса, на котором осуществляется аутентификация с добавляемым паролем \\
+\hline
+{\em login} & Логин пользователя, по которому осуществляется идентификация пользователя на ресурсе \\
+\hline
+{\em password} & Добавляемый пароль, по которому будет осуществляться аутентификация пользователя на ресурсе \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+{\bfseries Authentification error}, если запрос не прошёл аутентификацию 
+
+{\bfseries 0}, если данные успешно дабавлены 
+\end{DoxyReturn}
+\begin{DoxyNote}{Заметки}
+Если данные, указанные в запросе, не существуют в базе (за исключением имени пользователя), они будут добавлены. 
+\end{DoxyNote}
+\mbox{\label{namespacepsswdmng_1_1views_aa53772bce05acb0356c48e614ec28d53}} 
+\index{psswdmng\+::views@{psswdmng\+::views}!add\+\_\+user@{add\+\_\+user}}
+\index{add\+\_\+user@{add\+\_\+user}!psswdmng\+::views@{psswdmng\+::views}}
+\subsubsection{add\+\_\+user()}
+{\footnotesize\ttfamily def psswdmng.\+views.\+add\+\_\+user (\begin{DoxyParamCaption}\item[{}]{request }\end{DoxyParamCaption})}
+
+
+
+Обработчик http-\/запроса на добавление нового пользователя 
+
+Тип запроса\+: {\bfseries P\+O\+ST} 
+\begin{DoxyParams}{Аргументы}
+{\em auth\+\_\+seq} & Список (массив) чисел, представляющий собой байты расшифрованной аутентификационной последовательности, выданной клиентскому приложению \\
+\hline
+{\em user} & Имя пользователя, от которого поступает запрос (в данном случае – пользователь \char`\"{}Система\char`\"{}) \\
+\hline
+{\em username} & Имя добавляемого пользователя \\
+\hline
+{\em passwordhash} & Хэш пароля добавляемого пользователя \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+{\bfseries Authentification error}, если запрос не прошёл аутентификацию 
+
+{\bfseries 0}, если пользователь добавлен успешно 
+
+{\bfseries 1}, если такое имя пользователя уже зарегистрировано в системе или является зарезервированным 
+\end{DoxyReturn}
+\begin{DoxyNote}{Заметки}
+Допустимы только имена, под которыми ещё не были зарегистрированы пользователи в системе. Также запрещено имя {\ttfamily sys}, т.\+к. оно зарезервировано для нужд системы. 
+\end{DoxyNote}
+\mbox{\label{namespacepsswdmng_1_1views_a0ed3480d7f134a4711625e52f8c9f984}} 
+\index{psswdmng\+::views@{psswdmng\+::views}!authenticate@{authenticate}}
+\index{authenticate@{authenticate}!psswdmng\+::views@{psswdmng\+::views}}
+\subsubsection{authenticate()}
+{\footnotesize\ttfamily def psswdmng.\+views.\+authenticate (\begin{DoxyParamCaption}\item[{}]{request }\end{DoxyParamCaption})}
+
+
+
+Обработчик http-\/запроса на аутентификацию пользователя, сделавшего попытку выполнить вход в систему с программы-\/клиента 
+
+Тип запроса\+: {\bfseries G\+ET} 
+\begin{DoxyParams}{Аргументы}
+{\em auth\+\_\+seq} & Список (массив) чисел, представляющий собой байты расшифрованной аутентификационной последовательности, выданной клиентскому приложению \\
+\hline
+{\em user} & Имя пользователя, от которого поступает запрос \\
+\hline
+{\em username} & Имя пользователя, которого необходимо аутентифицировать \\
+\hline
+{\em passwordhash} & Хэш пароля пользователя, являющийся аутентификатором \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+{\bfseries Authentification error}, если запрос не прошёл аутентификацию 
+
+{\bfseries 0}, если пользователь успешно прошёл аутентификацию 
+
+{\bfseries 1}, аутентификация пользователя провалена 
+\end{DoxyReturn}
+\mbox{\label{namespacepsswdmng_1_1views_ac2dd817b09df21ef0d639199f794656d}} 
+\index{psswdmng\+::views@{psswdmng\+::views}!authentificate@{authentificate}}
+\index{authentificate@{authentificate}!psswdmng\+::views@{psswdmng\+::views}}
+\subsubsection{authentificate()}
+{\footnotesize\ttfamily def psswdmng.\+views.\+authentificate (\begin{DoxyParamCaption}\item[{}]{auth\+\_\+seq,  }\item[{}]{username }\end{DoxyParamCaption})}
+
+
+
+Функция, выполняющая аутентификацию запроса ~\newline
+ 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em auth\+\_\+seq} & Аутентификационная последовательность, отправленная клиентской программой \\
+\hline
+{\em username} & Имя пользователя, чей запрос необходимо аутентифицировать (отправителя последовательности) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+{\bfseries 0}, если запрос прошёл аутентификацию 
+
+{\bfseries 1}, если запрос не прошёл аутентификацию 
+\end{DoxyReturn}
+\mbox{\label{namespacepsswdmng_1_1views_a2a0f4820fa5b24534e02581bacc53617}} 
+\index{psswdmng\+::views@{psswdmng\+::views}!change\+\_\+password@{change\+\_\+password}}
+\index{change\+\_\+password@{change\+\_\+password}!psswdmng\+::views@{psswdmng\+::views}}
+\subsubsection{change\+\_\+password()}
+{\footnotesize\ttfamily def psswdmng.\+views.\+change\+\_\+password (\begin{DoxyParamCaption}\item[{}]{request }\end{DoxyParamCaption})}
+
+
+
+Обработчик http-\/запроса на замену пароля от ресурса 
+
+Тип запроса\+: {\bfseries P\+O\+ST} 
+\begin{DoxyParams}{Аргументы}
+{\em auth\+\_\+seq} & Список (массив) чисел, представляющий собой байты расшифрованной аутентификационной последовательности, выданной клиентскому приложению \\
+\hline
+{\em user} & Имя пользователя, от которого поступает запрос \\
+\hline
+{\em url} & U\+R\+L-\/адрес ресурса, пароль от которого необходимо изменить \\
+\hline
+{\em login} & Логин пользователя, используемый для его идентификации на указанном ресурсе \\
+\hline
+{\em password} & Новый пароль от указанного ресурса, на который необходимо заменить существующий \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+{\bfseries Authentification error}, если запрос не прошёл аутентификацию 
+
+{\bfseries 0}, если замена пароля произведена успешно 
+\end{DoxyReturn}
+\mbox{\label{namespacepsswdmng_1_1views_a38563d05f60414abbf1e16b4b3a2e4a7}} 
+\index{psswdmng\+::views@{psswdmng\+::views}!get\+\_\+authentication\+\_\+sequence@{get\+\_\+authentication\+\_\+sequence}}
+\index{get\+\_\+authentication\+\_\+sequence@{get\+\_\+authentication\+\_\+sequence}!psswdmng\+::views@{psswdmng\+::views}}
+\subsubsection{get\+\_\+authentication\+\_\+sequence()}
+{\footnotesize\ttfamily def psswdmng.\+views.\+get\+\_\+authentication\+\_\+sequence (\begin{DoxyParamCaption}\item[{}]{request }\end{DoxyParamCaption})}
+
+
+
+Обработчик http-\/запроса на добавление основных данных (адрес ресурса, логин и пароль пользователя на ресурсе) 
+
+Тип запроса\+: {\bfseries G\+ET} 
+\begin{DoxyParams}{Аргументы}
+{\em user} & Имя пользователя, от которого поступает запрос \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+{\bfseries enc\+\_\+auth\+\_\+seq} – зашифрованная последовательность байт, передаваемая пользователю для аутентификации запроса 
+\end{DoxyReturn}
+\mbox{\label{namespacepsswdmng_1_1views_ac84061d736cf49b655050b89b9e2fe2a}} 
+\index{psswdmng\+::views@{psswdmng\+::views}!get\+\_\+password@{get\+\_\+password}}
+\index{get\+\_\+password@{get\+\_\+password}!psswdmng\+::views@{psswdmng\+::views}}
+\subsubsection{get\+\_\+password()}
+{\footnotesize\ttfamily def psswdmng.\+views.\+get\+\_\+password (\begin{DoxyParamCaption}\item[{}]{request }\end{DoxyParamCaption})}
+
+
+
+Обработчик http-\/запроса на выдачу пароля от ресурса 
+
+Тип запроса\+: {\bfseries G\+ET} 
+\begin{DoxyParams}{Аргументы}
+{\em auth\+\_\+seq} & Список (массив) чисел, представляющий собой байты расшифрованной аутентификационной последовательности, выданной клиентскому приложению \\
+\hline
+{\em user} & Имя пользователя, от которого поступает запрос \\
+\hline
+{\em url} & Адрес сайта, пароль к которому должен быть предоставлен \\
+\hline
+{\em login} & Логин пользователя на сайте, к которому требуется предоставить пароль \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+{\bfseries Authentification error}, если запрос не прошёл аутентификацию 
+
+{\bfseries Password} – запрошенный пароль пользователя, если запрос прошёл успешно 
+\end{DoxyReturn}

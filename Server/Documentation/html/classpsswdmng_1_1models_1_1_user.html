@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.14"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Documentation for Password manager&#39;s server: Класс psswdmng.models.User</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Documentation for Password manager&#39;s server
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.14 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>psswdmng</b></li><li class="navelem"><b>models</b></li><li class="navelem"><a class="el" href="classpsswdmng_1_1models_1_1_user.html">User</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-static-attribs">Статические открытые данные</a> &#124;
+<a href="classpsswdmng_1_1models_1_1_user-members.html">Полный список членов класса</a>  </div>
+  <div class="headertitle">
+<div class="title">Класс psswdmng.models.User</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+Граф наследования:psswdmng.models.User:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="classpsswdmng_1_1models_1_1_user.png" usemap="#psswdmng.models.User_map" alt=""/>
+  <map id="psswdmng.models.User_map" name="psswdmng.models.User_map">
+</map>
+ </div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+Статические открытые данные</h2></td></tr>
+<tr class="memitem:a342033408a0a29f5724f68e127785cb3"><td class="memItemLeft" align="right" valign="top"><a id="a342033408a0a29f5724f68e127785cb3"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>user_id</b> = models.AutoField(primary_key = True, unique = True, null = False)</td></tr>
+<tr class="separator:a342033408a0a29f5724f68e127785cb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a240a30b902c35aad9e7f6808406d7182"><td class="memItemLeft" align="right" valign="top"><a id="a240a30b902c35aad9e7f6808406d7182"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>User_name</b> = models.CharField(max_length = 30, unique = True, null = False)</td></tr>
+<tr class="separator:a240a30b902c35aad9e7f6808406d7182"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a449f8949952806bffd673865a95a052b"><td class="memItemLeft" align="right" valign="top"><a id="a449f8949952806bffd673865a95a052b"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Master_password_hash</b> = models.BigIntegerField(null = False)</td></tr>
+<tr class="separator:a449f8949952806bffd673865a95a052b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14c6456d486be40c27c630face66b933"><td class="memItemLeft" align="right" valign="top"><a id="a14c6456d486be40c27c630face66b933"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Authentication_sequence</b> = models.BinaryField(null = True)</td></tr>
+<tr class="separator:a14c6456d486be40c27c630face66b933"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9593edac6f90ae86c274f0dbcd509a48"><td class="memItemLeft" align="right" valign="top"><a id="a9593edac6f90ae86c274f0dbcd509a48"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Open_key</b> = models.BinaryField(null = False)</td></tr>
+<tr class="separator:a9593edac6f90ae86c274f0dbcd509a48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<hr/>Объявления и описания членов класса находятся в файле:<ul>
+<li>D:/Django projects/Password manager/Server/psswdmng/models.py</li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.14
+</small></address>
+</body>
+</html>
