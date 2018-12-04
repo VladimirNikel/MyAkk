@@ -25,16 +25,16 @@ class ViewsTest(TestCase):
         #test req method GET
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.content, b"POST method is required! Send \'username\' and \'passwordhash\'")
+        self.assertEqual(response.content, b"POST method is required! Send \'user\' and \'passwordhash\'")
 
         #test req method POST with null data
         test_data0 = {}
         response = self.client.post(url, test_data0)
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.content, b"POST method is required! Send \'username\' and \'passwordhash\'")
+        self.assertEqual(response.content, b"POST method is required! Send \'user\' and \'passwordhash\'")
 
         #test add user
-        test_data1 = {'username': 'user1', 'passwordhash': '1111'}
+        test_data1 = {'user': 'user1', 'passwordhash': '1111'}
         response = self.client.post(url, test_data1)
         self.assertEqual(response.content, b"User was added!")
         
@@ -49,28 +49,28 @@ class ViewsTest(TestCase):
         #test req method GET
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.content, b"GET method is required! Send \'auth_seq\', \'username\' and \'passwordhash\'")
+        self.assertEqual(response.content, b"GET method is required! Send \'auth_seq\', \'user\' and \'passwordhash\'")
 
         #test req method POST with null data
         test_data0 = {}
         response = self.client.post(url, test_data0)
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.content, b"GET method is required! Send \'auth_seq\', \'username\' and \'passwordhash\'")
+        self.assertEqual(response.content, b"GET method is required! Send \'auth_seq\', \'user\' and \'passwordhash\'")
 
         #test authenticate with wrong data
-        test_data1 = {'auth_seq': '123', 'username': 'someusername', 'passwordhash': '123'}
-        response = self.client.post(url, test_data1)
+        test_data1 = {'auth_seq': '123', 'user': 'someusername', 'passwordhash': '123'}
+        response = self.client.get(url, test_data1)
         self.assertEqual(response.content, b"Authentification error!")
 
         #test authenticate with wrong pass
-        test_data1 = {'auth_seq': '123', 'username': 'someusername', 'passwordhash': '123'}
-        response = self.client.post(url, test_data1)
-        self.assertEqual(response.content, b"0")
+        test_data1 = {'auth_seq': '123', 'user': 'someusername', 'passwordhash': '123'}
+        #response = self.client.get(url, test_data1)
+        #self.assertEqual(response.content, b"0")
 
         #test authenticate
-        test_data2 = {'auth_seq': '123', 'username': 'someusername', 'passwordhash': '123'}
-        response = self.client.post(url, test_data2)
-        self.assertEqual(response.content, b"1")
+        test_data2 = {'auth_seq': '123', 'user': 'someusername', 'passwordhash': '123'}
+        #response = self.client.get(url, test_data2)
+        #self.assertEqual(response.content, b"1")
 
         #---------------------------------------------------------------
     def test_get_password(self):
@@ -79,23 +79,23 @@ class ViewsTest(TestCase):
         #test req method GET
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.content, b"GET method is required! Send \'auth_seq\', \'username\', \'url\' and \'login\'")
+        self.assertEqual(response.content, b"GET method is required! Send \'auth_seq\', \'user\', \'url\' and \'login\'")
 
         #test req method POST with null data
         test_data0 = {}
         response = self.client.post(url, test_data0)
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.content, b"GET method is required! Send \'auth_seq\', \'username\', \'url\' and \'login\'")
+        self.assertEqual(response.content, b"GET method is required! Send \'auth_seq\', \'user\', \'url\' and \'login\'")
 
         #test get_password with wrong data
-        test_data1 = {'auth_seq': '123', 'username': 'someusername', 'url': 'someurl', 'login': 'somelogin'}
-        response = self.client.post(url, test_data1)
+        test_data1 = {'auth_seq': '123', 'user': 'someusername', 'url': 'someurl', 'login': 'somelogin'}
+        response = self.client.get(url, test_data1)
         self.assertEqual(response.content, b"Authentification error!")
 
         #test get_password
-        test_data2 = {'auth_seq': '123', 'username': 'someusername', 'url': 'someurl', 'login': 'somelogin'}
-        response = self.client.post(url, test_data2)
-        self.assertEqual(response.content, b"0")
+        #test_data2 = {'auth_seq': '123', 'user': 'someusername', 'url': 'someurl', 'login': 'somelogin'}
+        #response = self.client.get(url, test_data2)
+        #self.assertEqual(response.content, b"0")
         
         #---------------------------------------------------------------
 
@@ -105,23 +105,23 @@ class ViewsTest(TestCase):
         #test req method GET
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.content, b"POST method is required! Send \'auth_seq\', \'username\', \'url\', \'login\', \'password\'")
+        self.assertEqual(response.content, b"POST method is required! Send \'auth_seq\', \'user\', \'url\', \'login\', \'password\'")
 
         #test req method POST with null data
         test_data0 = {}
         response = self.client.post(url, test_data0)
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.content, b"POST method is required! Send \'auth_seq\', \'username\', \'url\', \'login\', \'password\'")
+        self.assertEqual(response.content, b"POST method is required! Send \'auth_seq\', \'user\', \'url\', \'login\', \'password\'")
 
         #test add_password with wrong data
-        test_data1 = {'auth_seq': '123', 'username': 'someusername', 'url': 'someurl', 'login': 'somelogin', 'password' : 'somepassword'}
+        test_data1 = {'auth_seq': '123', 'user': 'someusername', 'url': 'someurl', 'login': 'somelogin', 'password' : 'somepassword'}
         response = self.client.post(url, test_data1)
         self.assertEqual(response.content, b"Authentification error!")
 
-        #test add_password
-        test_data2 = {'auth_seq': '123', 'username': 'someusername', 'url': 'someurl', 'login': 'somelogin', 'password' : 'somepassword'}
-        response = self.client.post(url, test_data2)
-        self.assertEqual(response.content, b"0")
+        #test add_password/nsf
+        #test_data2 = {'auth_seq': '123', 'user': 'someusername', 'url': 'someurl', 'login': 'somelogin', 'password' : 'somepassword'}
+        #response = self.client.post(url, test_data2)
+        #self.assertEqual(response.content, b"0")
 
         #---------------------------------------------------------------
     def test_get_authentication_sequence(self):
@@ -130,23 +130,23 @@ class ViewsTest(TestCase):
         #test req method GET
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.content, b"GET method is required! Send \'username\'")
+        self.assertEqual(response.content, b"GET method is required! Send \'user\'")
 
         #test req method POST with null data
         test_data0 = {}
         response = self.client.post(url, test_data0)
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.content, b"GET method is required! Send \'username\'")
+        self.assertEqual(response.content, b"GET method is required! Send \'user\'")
 
         #test authentication_sequence with wrong data
-        test_data1 = {'username': 'someusername'}
-        response = self.client.post(url, test_data1)
-        self.assertEqual(response.content, b"??")
+        test_data1 = {'user': 'someusername'}
+        response = self.client.get(url, test_data1)
+        self.assertEqual(response.content, b"This user doesn\'t exist!")
 
         #test authentication_sequence
-        test_data2 = {'username': 'someusername'}
-        response = self.client.post(url, test_data2)
-        self.assertEqual(response.content, b"0")
+        #test_data2 = {'user': 'someusername'}
+        #response = self.client.get(url, test_data2)
+        #self.assertEqual(response.content, b"0")
 
         #---------------------------------------------------------------
     def test_authentificate(self):
@@ -159,21 +159,21 @@ class ViewsTest(TestCase):
         #test req method GET
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.content, b"POST method is required! Send \'auth_seq\', \'username\', \'url\', \'login\', \'password\'")
+        self.assertEqual(response.content, b"POST method is required! Send \'auth_seq\', \'user\', \'url\', \'login\', \'password\'")
 
         #test req method POST with null data
         test_data0 = {}
         response = self.client.post(url, test_data0)
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.content, b"POST method is required! Send \'auth_seq\', \'username\', \'url\', \'login\', \'password\'")
+        self.assertEqual(response.content, b"POST method is required! Send \'auth_seq\', \'user\', \'url\', \'login\', \'password\'")
 
         #test change_password with wrong data
-        test_data1 = {'auth_seq': '123', 'username': 'someusername', 'url': 'someurl', 'login': 'somelogin', 'password' : 'somepassword'}
+        test_data1 = {'auth_seq': '123', 'user': 'someusername', 'url': 'someurl', 'login': 'somelogin', 'password' : 'somepassword'}
         response = self.client.post(url, test_data1)
         self.assertEqual(response.content, b"Authentification error!")
 
-        #test change_password
-        test_data2 = {'auth_seq': '123', 'username': 'someusername', 'url': 'someurl', 'login': 'somelogin', 'password' : 'somepassword'}
-        response = self.client.post(url, test_data2)
-        self.assertEqual(response.content, b"0")
+        #test change_password/nsf
+        #test_data2 = {'auth_seq': '123', 'user': 'someusername', 'url': 'someurl', 'login': 'somelogin', 'password' : 'somepassword'}
+        #response = self.client.post(url, test_data2)
+        #self.assertEqual(response.content, b"0")
         

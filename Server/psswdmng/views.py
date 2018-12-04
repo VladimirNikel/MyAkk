@@ -22,40 +22,40 @@ def index(request):
 
 def get_password(request):
         try:
-                if authentificate(request.GET.getlist('auth_seq'), username = request.GET['username']) != 0:
+                if authentificate(request.GET.getlist('auth_seq'), username = request.GET['user']) != 0:
                         return HttpResponse("Authentification error!")
                 else:
-                        user_obj = User.objects.get(User_name = request.GET['username'])
+                        user_obj = User.objects.get(User_name = request.GET['user'])
                         user_obj.Authentication_sequence = None
                         user_obj.save()
                 url = request.GET['url']
                 login = request.GET['login']
-                result = Main_record.objects.get(pair_id = Pair.objects.get(login_id = Login.objects.get(Login = login), resource_id = Resource.objects.get(URL = url)), user_id = User.objects.get(User_name = request.GET['username']))
+                result = Main_record.objects.get(pair_id = Pair.objects.get(login_id = Login.objects.get(Login = login), resource_id = Resource.objects.get(URL = url)), user_id = User.objects.get(User_name = request.GET['user']))
                 return HttpResponse(result.Password)
         except:
-                return HttpResponse("GET method is required! Send \'auth_seq\', \'username\', \'url\' and \'login\'")
+                return HttpResponse("GET method is required! Send \'auth_seq\', \'user\', \'url\' and \'login\'")
 
 @csrf_exempt	
 def add_user(request):
         try:
-                username = request.POST['username']
+                username = request.POST['user']
                 passwordhash = request.POST['passwordhash']
                 User.objects.create(User_name = username, Master_password_hash = passwordhash)
                 return HttpResponse("User was added!")
         except IntegrityError:
                 return HttpResponse("This user is already exist!")
         except:
-                return HttpResponse("POST method is required! Send \'username\' and \'passwordhash\'")
+                return HttpResponse("POST method is required! Send \'user\' and \'passwordhash\'")
 
 def authenticate(request):
         try:
-                if authentificate(request.GET.getlist('auth_seq'), username = request.GET['username']) != 0:
+                if authentificate(request.GET.getlist('auth_seq'), username = request.GET['user']) != 0:
                         return HttpResponse("Authentification error!")
                 else:
-                        user_obj = User.objects.get(User_name = request.GET['username'])
+                        user_obj = User.objects.get(User_name = request.GET['user'])
                         user_obj.Authentication_sequence = None
                         user_obj.save()
-                username = request.GET['username']
+                username = request.GET['user']
                 passwordhash = request.GET['passwordhash']
                 user = User.objects.get(User_name = username)
                 if str(user.Master_password_hash) == passwordhash:
@@ -63,15 +63,15 @@ def authenticate(request):
                 else:
                         return HttpResponse(0)
         except:
-                return HttpResponse("GET method is required! Send \'auth_seq\', \'username\' and \'passwordhash\'");
+                return HttpResponse("GET method is required! Send \'auth_seq\', \'user\' and \'passwordhash\'");
 	
 @csrf_exempt
 def add_password(request):
         try:
-                if authentificate(request.POST.getlist('auth_seq'), username = request.POST['username']) != 0:
+                if authentificate(request.POST.getlist('auth_seq'), username = request.POST['user']) != 0:
                         return HttpResponse('Authentification error!')
                 else:
-                        user_obj = User.objects.get(User_name = request.POST['username'])
+                        user_obj = User.objects.get(User_name = request.POST['user'])
                         user_obj.Authentication_sequence = None
                         user_obj.save()	
                 no_pair = False
@@ -95,12 +95,12 @@ def add_password(request):
                 Main_record.objects.create(pair_id = pair, Password = password, user_id = User.objects.get(User_name = user), Change_date = datetime.datetime.now())
                 return HttpResponse(0)
         except:
-                return HttpResponse("POST method is required! Send \'auth_seq\', \'username\', \'url\', \'login\', \'password\'");
+                return HttpResponse("POST method is required! Send \'auth_seq\', \'user\', \'url\', \'login\', \'password\'");
         
 	
 def get_authentication_sequence(request):
         try:
-                username = request.GET['username']
+                username = request.GET['user']
                 user = User.objects.get(User_name = username)
                 open_key_bytes = user.Open_key
                 public_key = load_pem_public_key(open_key_bytes, backend = default_backend())
@@ -109,8 +109,12 @@ def get_authentication_sequence(request):
                 user.save()
                 enc_auth_seq = public_key.encrypt(auth_seq, padding.OAEP(mgf=padding.MGF1(algorithm=hashes.SHA256()), algorithm=hashes.SHA256(), label=None))
                 return HttpResponse(enc_auth_seq, """content_type = 'application/octet-stream'""")
+        except User.DoesNotExist:
+                return HttpResponse("This user doesn\'t exist!");
+        except ValueError:
+                return HttpResponse("Public key for this user doesn\'t exist!");
         except:
-                return HttpResponse("GET method is required! Send \'username\'");
+                return HttpResponse("GET method is required! Send \'user\'");
   	
 def authentificate(auth_seq, username):
         try:
@@ -127,19 +131,19 @@ def authentificate(auth_seq, username):
 @csrf_exempt		
 def change_password(request):
         try:
-                if authentificate(request.POST.getlist('auth_seq'), username = request.POST['username']) != 0:
+                if authentificate(request.POST.getlist('auth_seq'), username = request.POST['user']) != 0:
                         return HttpResponse("Authentification error!")
                 else:
-                        user_obj = User.objects.get(User_name = request.POST['username'])
+                        user_obj = User.objects.get(User_name = request.POST['user'])
                         user_obj.Authentication_sequence = None
                         user_obj.save()
                 url = request.POST['url']
                 login = request.POST['login']
-                rec = Main_record.objects.get(pair_id = Pair.objects.get(login_id = Login.objects.get(Login = login), resource_id = Resource.objects.get(URL = url)), user_id = User.objects.get(User_name = request.POST['username']))
+                rec = Main_record.objects.get(pair_id = Pair.objects.get(login_id = Login.objects.get(Login = login), resource_id = Resource.objects.get(URL = url)), user_id = User.objects.get(User_name = request.POST['user']))
                 rec.Password = request.POST['password']
                 rec.Change_date = datetime.datetime.now()
                 rec.save()
                 return HttpResponse(0)
         except:
-                return HttpResponse("POST method is required! Send \'auth_seq\', \'username\', \'url\', \'login\', \'password\'");
+                return HttpResponse("POST method is required! Send \'auth_seq\', \'user\', \'url\', \'login\', \'password\'");
 
