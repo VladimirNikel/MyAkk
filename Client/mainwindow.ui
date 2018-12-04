@@ -21,14 +21,34 @@
    <widget class="QToolButton" name="addData">
     <property name="geometry">
      <rect>
-      <x>704</x>
+      <x>674</x>
       <y>10</y>
-      <width>111</width>
+      <width>141</width>
       <height>21</height>
      </rect>
     </property>
     <property name="text">
      <string>Добавить данные</string>
+    </property>
+   </widget>
+   <widget class="QTableView" name="tableView">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>40</y>
+      <width>581</width>
+      <height>241</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QTextBrowser" name="textBrowser">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>290</y>
+      <width>581</width>
+      <height>171</height>
+     </rect>
     </property>
    </widget>
   </widget>

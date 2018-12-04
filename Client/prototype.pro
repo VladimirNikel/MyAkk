@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT += core gui sql
+QT += core gui sql network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -33,6 +33,10 @@ HEADERS += \
         mainwindow.h \
     login_window.h \
     adddata.h
+
+LIBS += -L"D:/Program Files/Qt/5.9/openssl"
+
+INCLUDEPATH += "D:/Program Files/Qt/5.9/openssl/include"
 
 FORMS += \
         mainwindow.ui \
