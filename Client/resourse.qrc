@@ -8,6 +8,10 @@
         <file>support.ico</file>
         <file>info.ico</file>
         <file>add.ico</file>
+        <file>check.ico</file>
+        <file>cross.ico</file>
+        <file>check.png</file>
+        <file>cross.png</file>
     </qresource>
     <qresource prefix="/db">
         <file>Password_manager_db.sqlite3</file>

@@ -5,6 +5,7 @@
 #include <QCryptographicHash>
 #include <QtSql>
 #include <QSqlQuery>
+#include "registration.h"
 
 
 Login_window::Login_window(QWidget *parent, QString *name):
@@ -121,4 +122,11 @@ void Login_window::on_buttonEntry_clicked()
     }
 
 */
+}
+
+void Login_window::on_pushButton_clicked()
+{
+    registration reg(this);
+    reg.setModal(true);
+    reg.exec();
 }
