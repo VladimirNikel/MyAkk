@@ -100,6 +100,12 @@ def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="names
 <tr class="memitem:a2a0f4820fa5b24534e02581bacc53617"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepsswdmng_1_1views.html#a2a0f4820fa5b24534e02581bacc53617">change_password</a> (request)</td></tr>
 <tr class="memdesc:a2a0f4820fa5b24534e02581bacc53617"><td class="mdescLeft">&#160;</td><td class="mdescRight">Обработчик http-запроса на замену пароля от ресурса  <a href="#a2a0f4820fa5b24534e02581bacc53617">Подробнее...</a><br /></td></tr>
 <tr class="separator:a2a0f4820fa5b24534e02581bacc53617"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f3a25503f7947b2dd3f0e8bcb221e92"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepsswdmng_1_1views.html#a7f3a25503f7947b2dd3f0e8bcb221e92">start_session</a> (request)</td></tr>
+<tr class="memdesc:a7f3a25503f7947b2dd3f0e8bcb221e92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Обработчик http-запроса на начало новой сессии работы с программой  <a href="#a7f3a25503f7947b2dd3f0e8bcb221e92">Подробнее...</a><br /></td></tr>
+<tr class="separator:a7f3a25503f7947b2dd3f0e8bcb221e92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a538a093d677a7e5d85aa02dcfb51b192"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepsswdmng_1_1views.html#a538a093d677a7e5d85aa02dcfb51b192">end_session</a> (request)</td></tr>
+<tr class="memdesc:a538a093d677a7e5d85aa02dcfb51b192"><td class="mdescLeft">&#160;</td><td class="mdescRight">Обработчик http-запроса на завершение текущей сессии работы с программой  <a href="#a538a093d677a7e5d85aa02dcfb51b192">Подробнее...</a><br /></td></tr>
+<tr class="separator:a538a093d677a7e5d85aa02dcfb51b192"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
 <div class="textblock"><pre class="fragment">В данном файле описан набор функций-обработчиков http-запросов к серверу, а таке вспомогательных функций, необходимых для корректной работы сервера.
@@ -134,7 +140,9 @@ def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="names
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Возвращает</dt><dd><b>Authentification error</b>, если запрос не прошёл аутентификацию </dd>
+<dl class="section return"><dt>Возвращает</dt><dd><b>"Authentification error"</b>, если запрос не прошёл аутентификацию </dd>
+<dd>
+<b>"Your session has already ended"</b>, если сессия пользователя уже была завершена </dd>
 <dd>
 <b>0</b>, если данные успешно дабавлены </dd>
 <dd>
@@ -170,7 +178,9 @@ def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="names
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Возвращает</dt><dd><b>Authentification error</b>, если запрос не прошёл аутентификацию </dd>
+<dl class="section return"><dt>Возвращает</dt><dd><b>"Authentification error"</b>, если запрос не прошёл аутентификацию </dd>
+<dd>
+<b>"Your session has already ended"</b>, если сессия пользователя уже была завершена </dd>
 <dd>
 <b>Sucsess message</b> – сообщение об успешном добавлении пользователя, если пользователь добавлен успешно </dd>
 <dd>
@@ -208,7 +218,9 @@ def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="names
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Возвращает</dt><dd><b>Authentification error</b>, если запрос не прошёл аутентификацию </dd>
+<dl class="section return"><dt>Возвращает</dt><dd><b>"Authentification error"</b>, если запрос не прошёл аутентификацию </dd>
+<dd>
+<b>"Your session has already ended"</b>, если сессия пользователя уже была завершена </dd>
 <dd>
 <b>0</b>, если пользователь успешно прошёл аутентификацию </dd>
 <dd>
@@ -289,9 +301,46 @@ def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="names
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Возвращает</dt><dd><b>Authentification error</b>, если запрос не прошёл аутентификацию </dd>
+<dl class="section return"><dt>Возвращает</dt><dd><b>"Authentification error"</b>, если запрос не прошёл аутентификацию </dd>
+<dd>
+<b>"Your session has already ended"</b>, если сессия пользователя уже была завершена </dd>
 <dd>
 <b>0</b>, если замена пароля произведена успешно </dd>
+<dd>
+<b>Error message</b> – сообщение о непредвиденной ошибке с указаниями возможных действий пользователя по её устранению </dd></dl>
+
+</div>
+</div>
+<a id="a538a093d677a7e5d85aa02dcfb51b192"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a538a093d677a7e5d85aa02dcfb51b192">&#9670;&nbsp;</a></span>end_session()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def psswdmng.views.end_session </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>request</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Обработчик http-запроса на завершение текущей сессии работы с программой </p>
+<p>Тип запроса: <b>POST</b> </p>
+<p>Структура запроса: <code>URL<b>/startsession/</b></code>, где <code>URL</code> – ip-адрес и порт, на которых развёрнут сервер. </p><dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">auth_seq</td><td>Список (массив) чисел, представляющий собой байты расшифрованной аутентификационной последовательности, выданной клиентскому приложению </td></tr>
+    <tr><td class="paramname">user</td><td>Имя пользователя, от которого поступает запрос </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd><b>"Authentification error"</b>, если запрос не прошёл аутентификацию </dd>
+<dd>
+<b>"Session has already ended"</b>, если сессия для этого пользователя уже была завершена ранее </dd>
+<dd>
+<b>"Session ended"</b>, если сессия завершена успешно </dd>
 <dd>
 <b>Error message</b> – сообщение о непредвиденной ошибке с указаниями возможных действий пользователя по её устранению </dd></dl>
 
@@ -354,9 +403,47 @@ def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="names
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Возвращает</dt><dd><b>Authentification error</b>, если запрос не прошёл аутентификацию </dd>
+<dl class="section return"><dt>Возвращает</dt><dd><b>"Authentification error"</b>, если запрос не прошёл аутентификацию </dd>
+<dd>
+<b>"Your session has already ended"</b>, если сессия пользователя уже была завершена </dd>
 <dd>
 <b>Password</b> – запрошенный пароль пользователя, если запрос прошёл успешно </dd>
+<dd>
+<b>Error message</b> – сообщение о непредвиденной ошибке с указаниями возможных действий пользователя по её устранению </dd></dl>
+
+</div>
+</div>
+<a id="a7f3a25503f7947b2dd3f0e8bcb221e92"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f3a25503f7947b2dd3f0e8bcb221e92">&#9670;&nbsp;</a></span>start_session()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def psswdmng.views.start_session </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>request</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Обработчик http-запроса на начало новой сессии работы с программой </p>
+<p>Тип запроса: <b>POST</b> </p>
+<p>Структура запроса: <code>URL<b>/startsession/</b></code>, где <code>URL</code> – ip-адрес и порт, на которых развёрнут сервер. </p><dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">auth_seq</td><td>Список (массив) чисел, представляющий собой байты расшифрованной аутентификационной последовательности, выданной клиентскому приложению </td></tr>
+    <tr><td class="paramname">user</td><td>Имя пользователя, от которого поступает запрос </td></tr>
+    <tr><td class="paramname">open_key</td><td>Открытый ключ пользователя, который должен применяться в начинаемой сессии для аутентификации запросов </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd><b>"Authentification error"</b>, если запрос не прошёл аутентификацию </dd>
+<dd>
+<b>"Session has already started"</b>, если сессия для этого пользователя уже была начата ранее </dd>
+<dd>
+<b>"Session started"</b>, если сессия начата успешно </dd>
 <dd>
 <b>Error message</b> – сообщение о непредвиденной ошибке с указаниями возможных действий пользователя по её устранению </dd></dl>
 

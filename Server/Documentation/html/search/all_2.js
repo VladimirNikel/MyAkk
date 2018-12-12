@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['get_5fauthentication_5fsequence',['get_authentication_sequence',['../namespacepsswdmng_1_1views.html#a38563d05f60414abbf1e16b4b3a2e4a7',1,'psswdmng::views']]],
-  ['get_5fpassword',['get_password',['../namespacepsswdmng_1_1views.html#ac84061d736cf49b655050b89b9e2fe2a',1,'psswdmng::views']]]
+  ['end_5fsession',['end_session',['../namespacepsswdmng_1_1views.html#a538a093d677a7e5d85aa02dcfb51b192',1,'psswdmng::views']]]
 ];

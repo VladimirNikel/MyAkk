@@ -20,7 +20,11 @@ def \textbf{ authentificate} (auth\+\_\+seq, username)
 \begin{DoxyCompactList}\small\item\em Функция, выполняющая аутентификацию запроса ~\newline
  \end{DoxyCompactList}\item 
 def \textbf{ change\+\_\+password} (request)
-\begin{DoxyCompactList}\small\item\em Обработчик http-\/запроса на замену пароля от ресурса \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Обработчик http-\/запроса на замену пароля от ресурса \end{DoxyCompactList}\item 
+def \textbf{ start\+\_\+session} (request)
+\begin{DoxyCompactList}\small\item\em Обработчик http-\/запроса на начало новой сессии работы с программой \end{DoxyCompactList}\item 
+def \textbf{ end\+\_\+session} (request)
+\begin{DoxyCompactList}\small\item\em Обработчик http-\/запроса на завершение текущей сессии работы с программой \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Подробное описание}
@@ -57,7 +61,9 @@ def \textbf{ change\+\_\+password} (request)
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Возвращает}
-{\bfseries Authentification error}, если запрос не прошёл аутентификацию 
+{\bfseries \char`\"{}\+Authentification error\char`\"{}}, если запрос не прошёл аутентификацию 
+
+{\bfseries \char`\"{}\+Your session has already ended\char`\"{}}, если сессия пользователя уже была завершена 
 
 {\bfseries 0}, если данные успешно дабавлены 
 
@@ -90,7 +96,9 @@ def \textbf{ change\+\_\+password} (request)
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Возвращает}
-{\bfseries Authentification error}, если запрос не прошёл аутентификацию 
+{\bfseries \char`\"{}\+Authentification error\char`\"{}}, если запрос не прошёл аутентификацию 
+
+{\bfseries \char`\"{}\+Your session has already ended\char`\"{}}, если сессия пользователя уже была завершена 
 
 {\bfseries Sucsess message} – сообщение об успешном добавлении пользователя, если пользователь добавлен успешно 
 
@@ -125,7 +133,9 @@ def \textbf{ change\+\_\+password} (request)
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Возвращает}
-{\bfseries Authentification error}, если запрос не прошёл аутентификацию 
+{\bfseries \char`\"{}\+Authentification error\char`\"{}}, если запрос не прошёл аутентификацию 
+
+{\bfseries \char`\"{}\+Your session has already ended\char`\"{}}, если сессия пользователя уже была завершена 
 
 {\bfseries 0}, если пользователь успешно прошёл аутентификацию 
 
@@ -184,9 +194,39 @@ def \textbf{ change\+\_\+password} (request)
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Возвращает}
-{\bfseries Authentification error}, если запрос не прошёл аутентификацию 
+{\bfseries \char`\"{}\+Authentification error\char`\"{}}, если запрос не прошёл аутентификацию 
+
+{\bfseries \char`\"{}\+Your session has already ended\char`\"{}}, если сессия пользователя уже была завершена 
 
 {\bfseries 0}, если замена пароля произведена успешно 
+
+{\bfseries Error message} – сообщение о непредвиденной ошибке с указаниями возможных действий пользователя по её устранению 
+\end{DoxyReturn}
+\mbox{\label{namespacepsswdmng_1_1views_a538a093d677a7e5d85aa02dcfb51b192}} 
+\index{psswdmng\+::views@{psswdmng\+::views}!end\+\_\+session@{end\+\_\+session}}
+\index{end\+\_\+session@{end\+\_\+session}!psswdmng\+::views@{psswdmng\+::views}}
+\subsubsection{end\+\_\+session()}
+{\footnotesize\ttfamily def psswdmng.\+views.\+end\+\_\+session (\begin{DoxyParamCaption}\item[{}]{request }\end{DoxyParamCaption})}
+
+
+
+Обработчик http-\/запроса на завершение текущей сессии работы с программой 
+
+Тип запроса\+: {\bfseries P\+O\+ST} 
+
+Структура запроса\+: {\ttfamily U\+RL{\bfseries /startsession/}}, где {\ttfamily U\+RL} – ip-\/адрес и порт, на которых развёрнут сервер. 
+\begin{DoxyParams}{Аргументы}
+{\em auth\+\_\+seq} & Список (массив) чисел, представляющий собой байты расшифрованной аутентификационной последовательности, выданной клиентскому приложению \\
+\hline
+{\em user} & Имя пользователя, от которого поступает запрос \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+{\bfseries \char`\"{}\+Authentification error\char`\"{}}, если запрос не прошёл аутентификацию 
+
+{\bfseries \char`\"{}\+Session has already ended\char`\"{}}, если сессия для этого пользователя уже была завершена ранее 
+
+{\bfseries \char`\"{}\+Session ended\char`\"{}}, если сессия завершена успешно 
 
 {\bfseries Error message} – сообщение о непредвиденной ошибке с указаниями возможных действий пользователя по её устранению 
 \end{DoxyReturn}
@@ -236,9 +276,41 @@ def \textbf{ change\+\_\+password} (request)
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Возвращает}
-{\bfseries Authentification error}, если запрос не прошёл аутентификацию 
+{\bfseries \char`\"{}\+Authentification error\char`\"{}}, если запрос не прошёл аутентификацию 
+
+{\bfseries \char`\"{}\+Your session has already ended\char`\"{}}, если сессия пользователя уже была завершена 
 
 {\bfseries Password} – запрошенный пароль пользователя, если запрос прошёл успешно 
+
+{\bfseries Error message} – сообщение о непредвиденной ошибке с указаниями возможных действий пользователя по её устранению 
+\end{DoxyReturn}
+\mbox{\label{namespacepsswdmng_1_1views_a7f3a25503f7947b2dd3f0e8bcb221e92}} 
+\index{psswdmng\+::views@{psswdmng\+::views}!start\+\_\+session@{start\+\_\+session}}
+\index{start\+\_\+session@{start\+\_\+session}!psswdmng\+::views@{psswdmng\+::views}}
+\subsubsection{start\+\_\+session()}
+{\footnotesize\ttfamily def psswdmng.\+views.\+start\+\_\+session (\begin{DoxyParamCaption}\item[{}]{request }\end{DoxyParamCaption})}
+
+
+
+Обработчик http-\/запроса на начало новой сессии работы с программой 
+
+Тип запроса\+: {\bfseries P\+O\+ST} 
+
+Структура запроса\+: {\ttfamily U\+RL{\bfseries /startsession/}}, где {\ttfamily U\+RL} – ip-\/адрес и порт, на которых развёрнут сервер. 
+\begin{DoxyParams}{Аргументы}
+{\em auth\+\_\+seq} & Список (массив) чисел, представляющий собой байты расшифрованной аутентификационной последовательности, выданной клиентскому приложению \\
+\hline
+{\em user} & Имя пользователя, от которого поступает запрос \\
+\hline
+{\em open\+\_\+key} & Открытый ключ пользователя, который должен применяться в начинаемой сессии для аутентификации запросов \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+{\bfseries \char`\"{}\+Authentification error\char`\"{}}, если запрос не прошёл аутентификацию 
+
+{\bfseries \char`\"{}\+Session has already started\char`\"{}}, если сессия для этого пользователя уже была начата ранее 
+
+{\bfseries \char`\"{}\+Session started\char`\"{}}, если сессия начата успешно 
 
 {\bfseries Error message} – сообщение о непредвиденной ошибке с указаниями возможных действий пользователя по её устранению 
 \end{DoxyReturn}
