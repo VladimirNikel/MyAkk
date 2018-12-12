@@ -29,6 +29,8 @@ def index(request):
 ## Обработчик http-запроса на выдачу пароля от ресурса
 # 
 # Тип запроса: \b GET
+#
+# Структура запроса: \c URL<b>/getpassword/</b>, где \c URL – ip-адрес и порт, на которых развёрнут сервер.
 # \param auth_seq 	Список (массив) чисел, представляющий собой байты расшифрованной аутентификационной последовательности, выданной клиентскому приложению
 # \param user 		Имя пользователя, от которого поступает запрос
 # \param url		Адрес сайта, пароль к которому должен быть предоставлен
@@ -37,24 +39,26 @@ def index(request):
 # \returns			<b>Password</b> – запрошенный пароль пользователя, если запрос прошёл успешно
 # \returns			<b>Error message</b> – сообщение о непредвиденной ошибке с указаниями возможных действий пользователя по её устранению
 def get_password(request):
-        try:
-            if authentificate(request.GET.getlist('auth_seq'), username = request.GET['username']) != 0:
-                    return HttpResponse("Authentification error!")
-            else:
-                    user_obj = User.objects.get(User_name = request.GET['username'])
-                    user_obj.Authentication_sequence = None
-                    user_obj.save()
-            url = request.GET['url']
-            login = request.GET['login']
-            result = Main_record.objects.get(pair_id = Pair.objects.get(login_id = Login.objects.get(Login = login), resource_id = Resource.objects.get(URL = url)), user_id = User.objects.get(User_name = request.GET['username']))
-            return HttpResponse(result.Password)
-        except:
-            return HttpResponse("GET method is required! Send \'auth_seq\', \'username\', \'url\' and \'login\'")
+        #try:
+	if authentificate(request.GET.getlist('auth_seq'), username = request.GET['username']) != 0:
+		return HttpResponse("Authentification error!")
+	else:
+		user_obj = User.objects.get(User_name = request.GET['username'])
+		user_obj.Authentication_sequence = None
+		user_obj.save()
+	url = request.GET['url']
+	login = request.GET['login']
+	result = Main_record.objects.get(pair_id = Pair.objects.get(login_id = Login.objects.get(Login = login), resource_id = Resource.objects.get(URL = url)), user_id = User.objects.get(User_name = request.GET['username']))
+	return HttpResponse(result.Password)
+"""except:
+	return HttpResponse("GET method is required! Send \'auth_seq\', \'username\', \'url\' and \'login\'")"""
 
 	
 ## Обработчик http-запроса на добавление нового пользователя
 #
 # Тип запроса: \b POST
+#
+# Структура запроса: \c URL<b>/adduser/</b>, где \c URL – ip-адрес и порт, на которых развёрнут сервер.
 # \param auth_seq 		Список (массив) чисел, представляющий собой байты расшифрованной аутентификационной последовательности, выданной клиентскому приложению
 # \param user 			Имя пользователя, от которого поступает запрос (в данном случае – пользователь "Система")
 # \param username 		Имя добавляемого пользователя 
@@ -67,14 +71,14 @@ def get_password(request):
 @csrf_exempt	
 def add_user(request):
 		try:
-			if authentificate(request.POST.getlist('auth_seq'), username = request.POST['user']) != 0:
+			"""if authentificate(request.POST.getlist('auth_seq'), username = request.POST['user']) != 0:
 				return HttpResponse('Authentification error!')
 			elif(request.POST['user'] != 'sys'):
 				return HttpResponse('Authentification error!')
 			else:
 				user_obj = User.objects.get(User_name = request.POST['user'])
 				user_obj.Authentication_sequence = None
-				user_obj.save()
+				user_obj.save()"""
 			open_key_array = request.POST.getlist('openkey')
 			open_key = b''
 			for ch in open_key_array:
@@ -92,6 +96,8 @@ def add_user(request):
 ## Обработчик http-запроса на аутентификацию пользователя, сделавшего попытку выполнить вход в систему с программы-клиента
 #
 # Тип запроса: \b GET
+#
+# Структура запроса: \c URL<b>/authenticate/</b>, где \c URL – ip-адрес и порт, на которых развёрнут сервер.
 # \param auth_seq 		Список (массив) чисел, представляющий собой байты расшифрованной аутентификационной последовательности, выданной клиентскому приложению	
 # \param user 			Имя пользователя, от которого поступает запрос
 # \param username		Имя пользователя, которого необходимо аутентифицировать
@@ -122,6 +128,8 @@ def authenticate(request):
 ## Обработчик http-запроса на добавление основных данных (адрес ресурса, логин и пароль пользователя на ресурсе)
 #
 # Тип запроса: \b POST
+#
+# Структура запроса: \c URL<b>/addpassword/</b>, где \c URL – ip-адрес и порт, на которых развёрнут сервер.
 # \param auth_seq 		Список (массив) чисел, представляющий собой байты расшифрованной аутентификационной последовательности, выданной клиентскому приложению
 # \param user 			Имя пользователя, от которого поступает запрос
 # \param url			URL-адрес ресурса, на котором осуществляется аутентификация с добавляемым паролем
@@ -168,6 +176,8 @@ def add_password(request):
 ## Обработчик http-запроса на добавление основных данных (адрес ресурса, логин и пароль пользователя на ресурсе)
 #
 # Тип запроса: \b GET
+#
+# Структура запроса: \c URL<b>/getauthseq/</b>, где \c URL – ip-адрес и порт, на которых развёрнут сервер.
 # \param user 		Имя пользователя, от которого поступает запрос
 # \returns 			\b enc_auth_seq – зашифрованная последовательность байт, передаваемая пользователю для аутентификации запроса
 # \returns			<b>Error message</b> – сообщение о непредвиденной ошибке с указаниями возможных действий пользователя по её устранению		
@@ -175,7 +185,7 @@ def get_authentication_sequence(request):
 		try:
 			username = request.GET['username']
 			user = User.objects.get(User_name = username)
-			open_key_bytes = user.Open_key
+			open_key_bytes = bytes(user.Open_key)
 			public_key = load_pem_public_key(open_key_bytes, backend = default_backend())
 			auth_seq = os.urandom(64)
 			user.Authentication_sequence = auth_seq
@@ -197,7 +207,7 @@ def authentificate(auth_seq, username):
 			auth_bytes = b''
 			for ch in auth_seq:
 				auth_bytes += int(ch).to_bytes(1, byteorder = 'little', signed = False)
-			if User.objects.get(User_name = username).Authentication_sequence != auth_bytes:
+			if bytes(User.objects.get(User_name = username).Authentication_sequence) != auth_bytes:
 				return 1
 			else:
 				return 0
@@ -208,6 +218,8 @@ def authentificate(auth_seq, username):
 ## Обработчик http-запроса на замену пароля от ресурса
 #
 # Тип запроса: \b POST
+#
+# Структура запроса: \c URL<b>/changepassword/</b>, где \c URL – ip-адрес и порт, на которых развёрнут сервер.
 # \param auth_seq 		Список (массив) чисел, представляющий собой байты расшифрованной аутентификационной последовательности, выданной клиентскому приложению
 # \param user 			Имя пользователя, от которого поступает запрос
 # \param url			URL-адрес ресурса, пароль от которого необходимо изменить
@@ -233,5 +245,8 @@ def change_password(request):
 			rec.save()
 			return HttpResponse(0)
 		except:
-			return HttpResponse("POST method is required! Send \'auth_seq\', \'username\', \'url\', \'login\', \'password\'");
+			return HttpResponse("POST method is required! Send \'auth_seq\', \'username\', \'url\', \'login\', \'password\'")
+			
+
+		
 

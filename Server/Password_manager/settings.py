@@ -25,7 +25,7 @@ SECRET_KEY = '9t!nxk*v@=r)yw4&_u&b9w8c%sn@mu#7-(-qzf1c)*&htfkuev'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.1.7', '127.0.0.1']
 
 
 # Application definition
@@ -76,8 +76,12 @@ WSGI_APPLICATION = 'Password_manager.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'Password_manager_db.sqlite3'),
+		'NAME': 'psswdmng_db',
+        'ENGINE': 'django.db.backends.postgresql',
+		'USER': 'postgres',
+        'PASSWORD': '4411301vvzvv',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 
