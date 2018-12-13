@@ -40,7 +40,7 @@ def index(request):
 # \returns			<b>Password</b> – запрошенный пароль пользователя, если запрос прошёл успешно
 # \returns			<b>Error message</b> – сообщение о непредвиденной ошибке с указаниями возможных действий пользователя по её устранению
 def get_password(request):
-        try:
+		try:
 			if authentificate(request.GET.getlist('auth_seq'), username = request.GET['username']) != 0:
 				return HttpResponse("Authentification error!")
 			else:
@@ -48,7 +48,7 @@ def get_password(request):
 				user_obj.Authentication_sequence = None
 				user_obj.save()
 			user_obj = User.objects.get(User_name = request.POST['username'])
-			if(user_obj.Session_started == False)
+			if(user_obj.Session_started == False):
 				return HttpResponse("Your session has already ended")
 			url = request.GET['url']
 			login = request.GET['login']
@@ -85,14 +85,15 @@ def add_user(request):
 				user_obj.Authentication_sequence = None
 				user_obj.save()
 			user_obj = User.objects.get(User_name = request.POST['username'])
-			if(user_obj.Session_started == False)
+			if(user_obj.Session_started == False):
 				return HttpResponse("Your session has already ended")
 			open_key_array = request.POST.getlist('openkey')
 			open_key = b''
 			for ch in open_key_array:
 				open_key += int(ch).to_bytes(1, byteorder = 'little', signed = False)
-			username = request.POST['username']
 			passwordhash = request.POST['passwordhash']
+			print(type(passwordhash))
+			username = request.POST['username']
 			User.objects.create(User_name = username, Master_password_hash = passwordhash, Open_key = open_key)
 			return HttpResponse("User was added!")
 		except IntegrityError:
@@ -117,15 +118,15 @@ def add_user(request):
 # \returns				<b>Error message</b> – сообщение о непредвиденной ошибке с указаниями возможных действий пользователя по её устранению
 def authenticate(request):
 		try:
-			if authentificate(request.GET.getlist('auth_seq'), username = request.GET['username']) != 0:
+			"""if authentificate(request.GET.getlist('auth_seq'), username = request.GET['username']) != 0:
 				return HttpResponse("Authentification error!")
 			else:
 				user_obj = User.objects.get(User_name = request.GET['username'])
 				user_obj.Authentication_sequence = None
 				user_obj.save()
 			user_obj = User.objects.get(User_name = request.POST['username'])
-			if(user_obj.Session_started == False)
-				return HttpResponse("Your session has already ended")
+			if(user_obj.Session_started == False):
+				return HttpResponse("Your session has already ended")"""
 			username = request.GET['username']
 			passwordhash = request.GET['passwordhash']
 			user = User.objects.get(User_name = username)
@@ -162,7 +163,7 @@ def add_password(request):
 				user_obj.Authentication_sequence = None
 				user_obj.save()
 			user_obj = User.objects.get(User_name = request.POST['username'])
-			if(user_obj.Session_started == False)
+			if(user_obj.Session_started == False):
 				return HttpResponse("Your session has already ended")
 			no_pair = False
 			url = request.POST['url']
@@ -186,7 +187,7 @@ def add_password(request):
 			return HttpResponse(0)
 		except:
 			return HttpResponse("POST method is required! Send \'auth_seq\', \'username\', \'url\', \'login\', \'password\'");
-        
+		
 
 
 ## Обработчик http-запроса на добавление основных данных (адрес ресурса, логин и пароль пользователя на ресурсе)
@@ -203,9 +204,13 @@ def get_authentication_sequence(request):
 			user = User.objects.get(User_name = username)
 			open_key_bytes = bytes(user.Open_key)
 			public_key = load_pem_public_key(open_key_bytes, backend = default_backend())
-			auth_seq = os.urandom(64)
-			user.Authentication_sequence = auth_seq
-			user.save()
+			auth_seq = None
+			if not user.Authentication_sequence
+				auth_seq = os.urandom(64)
+				user.Authentication_sequence = auth_seq
+				user.save()
+			else:
+				auth_seq = user.Authentication_sequence
 			enc_auth_seq = public_key.encrypt(auth_seq, padding.OAEP(mgf=padding.MGF1(algorithm=hashes.SHA256()), algorithm=hashes.SHA256(), label=None))
 			return HttpResponse(enc_auth_seq, content_type = 'application/octet-stream')
 		except:
@@ -255,7 +260,7 @@ def change_password(request):
 				user_obj.Authentication_sequence = None
 				user_obj.save()
 			user_obj = User.objects.get(User_name = request.POST['username'])
-			if(user_obj.Session_started == False)
+			if(user_obj.Session_started == False):
 				return HttpResponse("Your session has already ended")
 			url = request.POST['url']
 			login = request.POST['login']
@@ -295,7 +300,7 @@ def start_session(request):
 		for ch in open_key_array:
 			open_key += int(ch).to_bytes(1, byteorder = 'little', signed = False)
 		user_obj = User.objects.get(User_name = request.POST['username'])
-		if(user_obj.Session_started == True)
+		if(user_obj.Session_started == True):
 			return HttpResponse("Your session has already started")
 		user_obj.Open_key = open_key
 		user_obj.Session_started = True
@@ -327,7 +332,7 @@ def end_session(request):
 			user_obj.save()
 		username = request.POST['username']
 		user_obj = User.objects.get(User_name = request.POST['username'])
-		if(user_obj.Session_started == False)
+		if(user_obj.Session_started == False):
 			return HttpResponse("Your session has already ended")
 		user_obj.Session_started = False
 		user_obj.save()
