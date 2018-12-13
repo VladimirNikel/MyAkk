@@ -205,7 +205,7 @@ def get_authentication_sequence(request):
 			open_key_bytes = bytes(user.Open_key)
 			public_key = load_pem_public_key(open_key_bytes, backend = default_backend())
 			auth_seq = None
-			if not user.Authentication_sequence
+			if not user.Authentication_sequence:
 				auth_seq = os.urandom(64)
 				user.Authentication_sequence = auth_seq
 				user.save()
