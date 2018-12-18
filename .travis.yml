@@ -23,6 +23,7 @@ script:
   - python ./manage.py test
   - cd ..
 
+
 #  - python ./Server/manage.py makemigrations
 #  - python ./Server/manage.py migrate
 #  - python ./Server/manage.py runserver
