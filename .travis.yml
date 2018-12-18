@@ -1,0 +1,29 @@
+language: python
+
+python:
+  - "3.6.2"
+
+services:
+  - postgresql
+
+env:
+  - DJANGO=2.0
+
+install:
+  - pip install django==$DJANGO --quiet
+  - pip install psycopg2
+  - pip install psycopg2-binary
+  - pip install cryptography
+
+before_script:
+  - psql -c "CREATE DATABASE psswdmng_db;" -U postgres
+
+script:
+  - cd Server
+  - python ./manage.py test
+  - cd ..
+
+#  - python ./Server/manage.py makemigrations
+#  - python ./Server/manage.py migrate
+#  - python ./Server/manage.py runserver
+  
