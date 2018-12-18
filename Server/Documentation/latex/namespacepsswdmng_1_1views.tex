@@ -47,7 +47,7 @@ def \textbf{ end\+\_\+session} (request)
 
 Тип запроса\+: {\bfseries P\+O\+ST} 
 
-Структура запроса\+: {\ttfamily U\+RL{\bfseries /addpassword/}}, где {\ttfamily U\+RL} – ip-\/адрес и порт, на которых развёрнут сервер. 
+Структура запроса\+: {\ttfamily U\+RL{\bfseries /psswdmng/addpassword/}}, где {\ttfamily U\+RL} – ip-\/адрес и порт, на которых развёрнут сервер. 
 \begin{DoxyParams}{Аргументы}
 {\em auth\+\_\+seq} & Список (массив) чисел, представляющий собой байты расшифрованной аутентификационной последовательности, выданной клиентскому приложению \\
 \hline
@@ -84,7 +84,7 @@ def \textbf{ end\+\_\+session} (request)
 
 Тип запроса\+: {\bfseries P\+O\+ST} 
 
-Структура запроса\+: {\ttfamily U\+RL{\bfseries /adduser/}}, где {\ttfamily U\+RL} – ip-\/адрес и порт, на которых развёрнут сервер. 
+Структура запроса\+: {\ttfamily U\+RL{\bfseries /psswdmng/adduser/}}, где {\ttfamily U\+RL} – ip-\/адрес и порт, на которых развёрнут сервер. 
 \begin{DoxyParams}{Аргументы}
 {\em auth\+\_\+seq} & Список (массив) чисел, представляющий собой байты расшифрованной аутентификационной последовательности, выданной клиентскому приложению \\
 \hline
@@ -121,7 +121,7 @@ def \textbf{ end\+\_\+session} (request)
 
 Тип запроса\+: {\bfseries G\+ET} 
 
-Структура запроса\+: {\ttfamily U\+RL{\bfseries /authenticate/}}, где {\ttfamily U\+RL} – ip-\/адрес и порт, на которых развёрнут сервер. 
+Структура запроса\+: {\ttfamily U\+RL{\bfseries /psswdmng/authenticate/}}, где {\ttfamily U\+RL} – ip-\/адрес и порт, на которых развёрнут сервер. 
 \begin{DoxyParams}{Аргументы}
 {\em auth\+\_\+seq} & Список (массив) чисел, представляющий собой байты расшифрованной аутентификационной последовательности, выданной клиентскому приложению \\
 \hline
@@ -180,7 +180,7 @@ def \textbf{ end\+\_\+session} (request)
 
 Тип запроса\+: {\bfseries P\+O\+ST} 
 
-Структура запроса\+: {\ttfamily U\+RL{\bfseries /changepassword/}}, где {\ttfamily U\+RL} – ip-\/адрес и порт, на которых развёрнут сервер. 
+Структура запроса\+: {\ttfamily U\+RL{\bfseries /psswdmng/changepassword/}}, где {\ttfamily U\+RL} – ip-\/адрес и порт, на которых развёрнут сервер. 
 \begin{DoxyParams}{Аргументы}
 {\em auth\+\_\+seq} & Список (массив) чисел, представляющий собой байты расшифрованной аутентификационной последовательности, выданной клиентскому приложению \\
 \hline
@@ -214,7 +214,7 @@ def \textbf{ end\+\_\+session} (request)
 
 Тип запроса\+: {\bfseries P\+O\+ST} 
 
-Структура запроса\+: {\ttfamily U\+RL{\bfseries /startsession/}}, где {\ttfamily U\+RL} – ip-\/адрес и порт, на которых развёрнут сервер. 
+Структура запроса\+: {\ttfamily U\+RL{\bfseries /psswdmng/endsession/}}, где {\ttfamily U\+RL} – ip-\/адрес и порт, на которых развёрнут сервер. 
 \begin{DoxyParams}{Аргументы}
 {\em auth\+\_\+seq} & Список (массив) чисел, представляющий собой байты расшифрованной аутентификационной последовательности, выданной клиентскому приложению \\
 \hline
@@ -242,7 +242,7 @@ def \textbf{ end\+\_\+session} (request)
 
 Тип запроса\+: {\bfseries G\+ET} 
 
-Структура запроса\+: {\ttfamily U\+RL{\bfseries /getauthseq/}}, где {\ttfamily U\+RL} – ip-\/адрес и порт, на которых развёрнут сервер. 
+Структура запроса\+: {\ttfamily U\+RL{\bfseries /psswdmng/getauthseq/}}, где {\ttfamily U\+RL} – ip-\/адрес и порт, на которых развёрнут сервер. 
 \begin{DoxyParams}{Аргументы}
 {\em user} & Имя пользователя, от которого поступает запрос \\
 \hline
@@ -264,7 +264,7 @@ def \textbf{ end\+\_\+session} (request)
 
 Тип запроса\+: {\bfseries G\+ET} 
 
-Структура запроса\+: {\ttfamily U\+RL{\bfseries /getpassword/}}, где {\ttfamily U\+RL} – ip-\/адрес и порт, на которых развёрнут сервер. 
+Структура запроса\+: {\ttfamily U\+RL{\bfseries /psswdmng/getpassword/}}, где {\ttfamily U\+RL} – ip-\/адрес и порт, на которых развёрнут сервер. 
 \begin{DoxyParams}{Аргументы}
 {\em auth\+\_\+seq} & Список (массив) чисел, представляющий собой байты расшифрованной аутентификационной последовательности, выданной клиентскому приложению \\
 \hline
@@ -296,7 +296,7 @@ def \textbf{ end\+\_\+session} (request)
 
 Тип запроса\+: {\bfseries P\+O\+ST} 
 
-Структура запроса\+: {\ttfamily U\+RL{\bfseries /startsession/}}, где {\ttfamily U\+RL} – ip-\/адрес и порт, на которых развёрнут сервер. 
+Структура запроса\+: {\ttfamily U\+RL{\bfseries /psswdmng/startsession/}}, где {\ttfamily U\+RL} – ip-\/адрес и порт, на которых развёрнут сервер. 
 \begin{DoxyParams}{Аргументы}
 {\em auth\+\_\+seq} & Список (массив) чисел, представляющий собой байты расшифрованной аутентификационной последовательности, выданной клиентскому приложению \\
 \hline

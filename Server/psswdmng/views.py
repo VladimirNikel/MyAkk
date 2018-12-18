@@ -30,7 +30,7 @@ def index(request):
 # 
 # Тип запроса: \b GET
 #
-# Структура запроса: \c URL<b>/getpassword/</b>, где \c URL – ip-адрес и порт, на которых развёрнут сервер.
+# Структура запроса: \c URL<b>/psswdmng/getpassword/</b>, где \c URL – ip-адрес и порт, на которых развёрнут сервер.
 # \param auth_seq 	Список (массив) чисел, представляющий собой байты расшифрованной аутентификационной последовательности, выданной клиентскому приложению
 # \param user 		Имя пользователя, от которого поступает запрос
 # \param url		Адрес сайта, пароль к которому должен быть предоставлен
@@ -62,7 +62,7 @@ def get_password(request):
 #
 # Тип запроса: \b POST
 #
-# Структура запроса: \c URL<b>/adduser/</b>, где \c URL – ip-адрес и порт, на которых развёрнут сервер.
+# Структура запроса: \c URL<b>/psswdmng/adduser/</b>, где \c URL – ip-адрес и порт, на которых развёрнут сервер.
 # \param auth_seq 		Список (массив) чисел, представляющий собой байты расшифрованной аутентификационной последовательности, выданной клиентскому приложению
 # \param user 			Имя пользователя, от которого поступает запрос (в данном случае – пользователь "Система")
 # \param username 		Имя добавляемого пользователя 
@@ -106,7 +106,7 @@ def add_user(request):
 #
 # Тип запроса: \b GET
 #
-# Структура запроса: \c URL<b>/authenticate/</b>, где \c URL – ip-адрес и порт, на которых развёрнут сервер.
+# Структура запроса: \c URL<b>/psswdmng/authenticate/</b>, где \c URL – ip-адрес и порт, на которых развёрнут сервер.
 # \param auth_seq 		Список (массив) чисел, представляющий собой байты расшифрованной аутентификационной последовательности, выданной клиентскому приложению	
 # \param user 			Имя пользователя, от которого поступает запрос
 # \param username		Имя пользователя, которого необходимо аутентифицировать
@@ -118,7 +118,7 @@ def add_user(request):
 # \returns				<b>Error message</b> – сообщение о непредвиденной ошибке с указаниями возможных действий пользователя по её устранению
 def authenticate(request):
 		try:
-			"""if authentificate(request.GET.getlist('auth_seq'), username = request.GET['username']) != 0:
+			if authentificate(request.GET.getlist('auth_seq'), username = request.GET['username']) != 0:
 				return HttpResponse("Authentification error!")
 			else:
 				user_obj = User.objects.get(User_name = request.GET['username'])
@@ -126,7 +126,7 @@ def authenticate(request):
 				user_obj.save()
 			user_obj = User.objects.get(User_name = request.POST['username'])
 			if(user_obj.Session_started == False):
-				return HttpResponse("Your session has already ended")"""
+				return HttpResponse("Your session has already ended")
 			username = request.GET['username']
 			passwordhash = request.GET['passwordhash']
 			user = User.objects.get(User_name = username)
@@ -142,7 +142,7 @@ def authenticate(request):
 #
 # Тип запроса: \b POST
 #
-# Структура запроса: \c URL<b>/addpassword/</b>, где \c URL – ip-адрес и порт, на которых развёрнут сервер.
+# Структура запроса: \c URL<b>/psswdmng/addpassword/</b>, где \c URL – ip-адрес и порт, на которых развёрнут сервер.
 # \param auth_seq 		Список (массив) чисел, представляющий собой байты расшифрованной аутентификационной последовательности, выданной клиентскому приложению
 # \param user 			Имя пользователя, от которого поступает запрос
 # \param url			URL-адрес ресурса, на котором осуществляется аутентификация с добавляемым паролем
@@ -194,7 +194,7 @@ def add_password(request):
 #
 # Тип запроса: \b GET
 #
-# Структура запроса: \c URL<b>/getauthseq/</b>, где \c URL – ip-адрес и порт, на которых развёрнут сервер.
+# Структура запроса: \c URL<b>/psswdmng/getauthseq/</b>, где \c URL – ip-адрес и порт, на которых развёрнут сервер.
 # \param user 		Имя пользователя, от которого поступает запрос
 # \returns 			\b enc_auth_seq – зашифрованная последовательность байт, передаваемая пользователю для аутентификации запроса
 # \returns			<b>Error message</b> – сообщение о непредвиденной ошибке с указаниями возможных действий пользователя по её устранению		
@@ -240,7 +240,7 @@ def authentificate(auth_seq, username):
 #
 # Тип запроса: \b POST
 #
-# Структура запроса: \c URL<b>/changepassword/</b>, где \c URL – ip-адрес и порт, на которых развёрнут сервер.
+# Структура запроса: \c URL<b>/psswdmng/changepassword/</b>, где \c URL – ip-адрес и порт, на которых развёрнут сервер.
 # \param auth_seq 		Список (массив) чисел, представляющий собой байты расшифрованной аутентификационной последовательности, выданной клиентскому приложению
 # \param user 			Имя пользователя, от которого поступает запрос
 # \param url			URL-адрес ресурса, пароль от которого необходимо изменить
@@ -277,7 +277,7 @@ def change_password(request):
 #
 # Тип запроса: \b POST
 #
-# Структура запроса: \c URL<b>/startsession/</b>, где \c URL – ip-адрес и порт, на которых развёрнут сервер.
+# Структура запроса: \c URL<b>/psswdmng/startsession/</b>, где \c URL – ip-адрес и порт, на которых развёрнут сервер.
 # \param auth_seq 		Список (массив) чисел, представляющий собой байты расшифрованной аутентификационной последовательности, выданной клиентскому приложению
 # \param user 			Имя пользователя, от которого поступает запрос
 # \param open_key		Открытый ключ пользователя, который должен применяться в начинаемой сессии для аутентификации запросов
@@ -314,7 +314,7 @@ def start_session(request):
 #
 # Тип запроса: \b POST
 #
-# Структура запроса: \c URL<b>/startsession/</b>, где \c URL – ip-адрес и порт, на которых развёрнут сервер.
+# Структура запроса: \c URL<b>/psswdmng/endsession/</b>, где \c URL – ip-адрес и порт, на которых развёрнут сервер.
 # \param auth_seq 		Список (массив) чисел, представляющий собой байты расшифрованной аутентификационной последовательности, выданной клиентскому приложению
 # \param user 			Имя пользователя, от которого поступает запрос
 # \returns 				<b>"Authentification error"</b>, если запрос не прошёл аутентификацию

@@ -130,7 +130,7 @@ def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="names
 
 <p>Обработчик http-запроса на добавление основных данных (адрес ресурса, логин и пароль пользователя на ресурсе) </p>
 <p>Тип запроса: <b>POST</b> </p>
-<p>Структура запроса: <code>URL<b>/addpassword/</b></code>, где <code>URL</code> – ip-адрес и порт, на которых развёрнут сервер. </p><dl class="params"><dt>Аргументы</dt><dd>
+<p>Структура запроса: <code>URL<b>/psswdmng/addpassword/</b></code>, где <code>URL</code> – ip-адрес и порт, на которых развёрнут сервер. </p><dl class="params"><dt>Аргументы</dt><dd>
   <table class="params">
     <tr><td class="paramname">auth_seq</td><td>Список (массив) чисел, представляющий собой байты расшифрованной аутентификационной последовательности, выданной клиентскому приложению </td></tr>
     <tr><td class="paramname">user</td><td>Имя пользователя, от которого поступает запрос </td></tr>
@@ -169,7 +169,7 @@ def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="names
 
 <p>Обработчик http-запроса на добавление нового пользователя </p>
 <p>Тип запроса: <b>POST</b> </p>
-<p>Структура запроса: <code>URL<b>/adduser/</b></code>, где <code>URL</code> – ip-адрес и порт, на которых развёрнут сервер. </p><dl class="params"><dt>Аргументы</dt><dd>
+<p>Структура запроса: <code>URL<b>/psswdmng/adduser/</b></code>, где <code>URL</code> – ip-адрес и порт, на которых развёрнут сервер. </p><dl class="params"><dt>Аргументы</dt><dd>
   <table class="params">
     <tr><td class="paramname">auth_seq</td><td>Список (массив) чисел, представляющий собой байты расшифрованной аутентификационной последовательности, выданной клиентскому приложению </td></tr>
     <tr><td class="paramname">user</td><td>Имя пользователя, от которого поступает запрос (в данном случае – пользователь "Система") </td></tr>
@@ -209,7 +209,7 @@ def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="names
 
 <p>Обработчик http-запроса на аутентификацию пользователя, сделавшего попытку выполнить вход в систему с программы-клиента </p>
 <p>Тип запроса: <b>GET</b> </p>
-<p>Структура запроса: <code>URL<b>/authenticate/</b></code>, где <code>URL</code> – ip-адрес и порт, на которых развёрнут сервер. </p><dl class="params"><dt>Аргументы</dt><dd>
+<p>Структура запроса: <code>URL<b>/psswdmng/authenticate/</b></code>, где <code>URL</code> – ip-адрес и порт, на которых развёрнут сервер. </p><dl class="params"><dt>Аргументы</dt><dd>
   <table class="params">
     <tr><td class="paramname">auth_seq</td><td>Список (массив) чисел, представляющий собой байты расшифрованной аутентификационной последовательности, выданной клиентскому приложению </td></tr>
     <tr><td class="paramname">user</td><td>Имя пользователя, от которого поступает запрос </td></tr>
@@ -291,7 +291,7 @@ def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="names
 
 <p>Обработчик http-запроса на замену пароля от ресурса </p>
 <p>Тип запроса: <b>POST</b> </p>
-<p>Структура запроса: <code>URL<b>/changepassword/</b></code>, где <code>URL</code> – ip-адрес и порт, на которых развёрнут сервер. </p><dl class="params"><dt>Аргументы</dt><dd>
+<p>Структура запроса: <code>URL<b>/psswdmng/changepassword/</b></code>, где <code>URL</code> – ip-адрес и порт, на которых развёрнут сервер. </p><dl class="params"><dt>Аргументы</dt><dd>
   <table class="params">
     <tr><td class="paramname">auth_seq</td><td>Список (массив) чисел, представляющий собой байты расшифрованной аутентификационной последовательности, выданной клиентскому приложению </td></tr>
     <tr><td class="paramname">user</td><td>Имя пользователя, от которого поступает запрос </td></tr>
@@ -329,7 +329,7 @@ def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="names
 
 <p>Обработчик http-запроса на завершение текущей сессии работы с программой </p>
 <p>Тип запроса: <b>POST</b> </p>
-<p>Структура запроса: <code>URL<b>/startsession/</b></code>, где <code>URL</code> – ip-адрес и порт, на которых развёрнут сервер. </p><dl class="params"><dt>Аргументы</dt><dd>
+<p>Структура запроса: <code>URL<b>/psswdmng/endsession/</b></code>, где <code>URL</code> – ip-адрес и порт, на которых развёрнут сервер. </p><dl class="params"><dt>Аргументы</dt><dd>
   <table class="params">
     <tr><td class="paramname">auth_seq</td><td>Список (массив) чисел, представляющий собой байты расшифрованной аутентификационной последовательности, выданной клиентскому приложению </td></tr>
     <tr><td class="paramname">user</td><td>Имя пользователя, от которого поступает запрос </td></tr>
@@ -364,7 +364,7 @@ def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="names
 
 <p>Обработчик http-запроса на добавление основных данных (адрес ресурса, логин и пароль пользователя на ресурсе) </p>
 <p>Тип запроса: <b>GET</b> </p>
-<p>Структура запроса: <code>URL<b>/getauthseq/</b></code>, где <code>URL</code> – ip-адрес и порт, на которых развёрнут сервер. </p><dl class="params"><dt>Аргументы</dt><dd>
+<p>Структура запроса: <code>URL<b>/psswdmng/getauthseq/</b></code>, где <code>URL</code> – ip-адрес и порт, на которых развёрнут сервер. </p><dl class="params"><dt>Аргументы</dt><dd>
   <table class="params">
     <tr><td class="paramname">user</td><td>Имя пользователя, от которого поступает запрос </td></tr>
   </table>
@@ -394,7 +394,7 @@ def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="names
 
 <p>Обработчик http-запроса на выдачу пароля от ресурса </p>
 <p>Тип запроса: <b>GET</b> </p>
-<p>Структура запроса: <code>URL<b>/getpassword/</b></code>, где <code>URL</code> – ip-адрес и порт, на которых развёрнут сервер. </p><dl class="params"><dt>Аргументы</dt><dd>
+<p>Структура запроса: <code>URL<b>/psswdmng/getpassword/</b></code>, где <code>URL</code> – ip-адрес и порт, на которых развёрнут сервер. </p><dl class="params"><dt>Аргументы</dt><dd>
   <table class="params">
     <tr><td class="paramname">auth_seq</td><td>Список (массив) чисел, представляющий собой байты расшифрованной аутентификационной последовательности, выданной клиентскому приложению </td></tr>
     <tr><td class="paramname">user</td><td>Имя пользователя, от которого поступает запрос </td></tr>
@@ -431,7 +431,7 @@ def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="names
 
 <p>Обработчик http-запроса на начало новой сессии работы с программой </p>
 <p>Тип запроса: <b>POST</b> </p>
-<p>Структура запроса: <code>URL<b>/startsession/</b></code>, где <code>URL</code> – ip-адрес и порт, на которых развёрнут сервер. </p><dl class="params"><dt>Аргументы</dt><dd>
+<p>Структура запроса: <code>URL<b>/psswdmng/startsession/</b></code>, где <code>URL</code> – ip-адрес и порт, на которых развёрнут сервер. </p><dl class="params"><dt>Аргументы</dt><dd>
   <table class="params">
     <tr><td class="paramname">auth_seq</td><td>Список (массив) чисел, представляющий собой байты расшифрованной аутентификационной последовательности, выданной клиентскому приложению </td></tr>
     <tr><td class="paramname">user</td><td>Имя пользователя, от которого поступает запрос </td></tr>
