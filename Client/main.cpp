@@ -6,9 +6,13 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+    //переменные
     QString *name = new QString;
-    MainWindow w(nullptr, name);
-    Login_window lo(nullptr, name);
+    QString *ipHost = new QString;
+    *ipHost = "http://192.168.1.13:8000";
+
+    MainWindow w(nullptr, name, ipHost);
+    Login_window lo(nullptr, name, ipHost);
     lo.show();
     QObject::connect(&lo,SIGNAL(openWindow()),&w,SLOT(showwin()));
 

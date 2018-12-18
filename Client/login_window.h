@@ -2,6 +2,7 @@
 #define LOGIN_WINDOW_H
 
 #include <QDialog>
+#include <QNetworkAccessManager>
 
 namespace Ui {
 class Login_window;
@@ -12,9 +13,12 @@ class Login_window : public QDialog
     Q_OBJECT
 
 public:
-    explicit Login_window(QWidget *parent = nullptr, QString *name = nullptr);
+    explicit Login_window(QWidget *parent = nullptr, QString *name = nullptr, QString *ipHost = nullptr);
     ~Login_window();
     QString *name;
+    QString *ipHost;
+
+    QNetworkAccessManager *manager;
 
 
 signals:

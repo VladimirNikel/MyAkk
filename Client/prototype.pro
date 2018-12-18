@@ -28,13 +28,15 @@ SOURCES += \
         mainwindow.cpp \
     login_window.cpp \
     adddata.cpp \
-    registration.cpp
+    registration.cpp \
+    setting.cpp
 
 HEADERS += \
         mainwindow.h \
     login_window.h \
     adddata.h \
-    registration.h
+    registration.h \
+    setting.h
 
 LIBS += -L"D:/Program Files/Qt/5.9/openssl"
 
@@ -44,7 +46,8 @@ FORMS += \
         mainwindow.ui \
     login_window.ui \
     adddata.ui \
-    registration.ui
+    registration.ui \
+    setting.ui
 
 RESOURCES += \
     resourse.qrc

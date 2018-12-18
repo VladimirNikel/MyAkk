@@ -8,8 +8,8 @@ registration::registration(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->text->setText("");
-    connect(ui->pass1, SIGNAL(textChanged(QString)),this,SLOT(check()));
-    connect(ui->pass2, SIGNAL(textChanged(QString)),this,SLOT(check()));
+    //connect(ui->pass1, SIGNAL(textChanged(QString)),this,SLOT(check()));
+    //connect(ui->pass2, SIGNAL(textChanged(QString)),this,SLOT(check()));
 
 }
 
@@ -29,7 +29,7 @@ void registration::check(){
         QPixmap cros(":/photo/cross.ico");
         ui->foto->setPixmap(cros);
         ui->foto->setScaledContents(true);
-        ui->text->setText("Пароли не совпадают.");
+        ui->text->setText(" ! Пароли не совпадают.");
     }
 }
 

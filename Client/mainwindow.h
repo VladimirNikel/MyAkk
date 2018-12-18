@@ -13,9 +13,12 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0, QString *name = nullptr);
+    explicit MainWindow(QWidget *parent = 0, QString *name = nullptr, QString *ipHost = nullptr);
     ~MainWindow();
     QString *name;
+    QString *ipHost;
+
+
     QNetworkAccessManager *manager;
     //bool allowedWork=false;
 
@@ -26,6 +29,8 @@ public slots:
 private slots:
     void show_window_login();
     void replyFinished(QNetworkReply*);
+    void print_tip();
+    void show_setting_window();
 
 
 

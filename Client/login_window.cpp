@@ -1,14 +1,18 @@
 #include "login_window.h"
 #include "ui_login_window.h"
-#include <QtSql>
 #include <QMessageBox>
 #include <QCryptographicHash>
 #include <QtSql>
 #include <QSqlQuery>
 #include "registration.h"
+#include <QUrl>
+#include <QtNetwork/QNetworkAccessManager>
+#include <QtNetwork/QNetworkRequest>
+#include <QtNetwork/QNetworkReply>
+#include <QSettings>
 
 
-Login_window::Login_window(QWidget *parent, QString *name):
+Login_window::Login_window(QWidget *parent, QString *name, QString *ipHost):
     QDialog(parent),
     ui(new Ui::Login_window)
 {
@@ -18,7 +22,12 @@ Login_window::Login_window(QWidget *parent, QString *name):
     ui->buttonEntry->setEnabled(false);
     connect(ui->inputLogin,SIGNAL(textChanged(QString)),this,SLOT(button_enable()));
     connect(ui->inputPassword,SIGNAL(textChanged(QString)),this,SLOT(button_enable()));
+
+    manager = new QNetworkAccessManager(this);
+    qDebug() << connect(manager, SIGNAL(finished(QNetworkReply*)), this, SLOT(replyFinished(QNetworkReply*)));
+
     this->name = name;
+    this->ipHost = ipHost;
 
 }
 
@@ -40,12 +49,30 @@ void Login_window::on_buttonEntry_clicked()
 {
     QString login = ui->inputLogin->text();
     QString password = ui->inputPassword->text();
-
     //получение хэша пароля
     QByteArray ba = password.toUtf8();
-    //переменная для хранения хэша в
+    //переменная для хранения хэша
     QByteArray pass_hash = QCryptographicHash::hash(ba,QCryptographicHash::Sha512);
     qDebug()<<pass_hash;
+
+
+/*
+    //(QNetworkRequest(QUrl((*ipHst)+"/psswdmng/adduser/?username="+(*name)+"/?passwordhash="+pass_hash)));
+    QNetworkRequest request(QUrl((*ipHost)+"/psswdmng/adduser/?username='"+login+"'&passwordhash="));
+    //QString bound="margin"; //name of the boundary
+//    data.append("Content-Disposition: form-data; name=\"passwordhash\"\r\n\r\n");
+//    data.append(pass_hash + "\r\n");
+//    data.append("--" + bound +"\r\n");
+//    data.append("Content-Disposition: form-data; name=\"username\"\r\n\r\n");
+//    data.append(login + "\r\n");
+
+    QNetworkReply *reply = manager->post(request,pass_hash);
+    qDebug() << reply->readAll();
+*/
+
+
+    //QNetworkReply *reply = manager->post(QNetworkRequest(QUrl((*ipHost)+"/psswdmng/adduser/?username=\'"+(*name)+"\'/?passwordhash="+pass_hash)));
+
 
     //Подключаем базу данных
     QSqlDatabase db;
@@ -57,7 +84,6 @@ void Login_window::on_buttonEntry_clicked()
     else {
         qDebug() << "Success!";
     }
-
 
     QSqlQuery query;
     query.prepare("SELECT Master_password_hash "
@@ -74,8 +100,11 @@ void Login_window::on_buttonEntry_clicked()
     QByteArray hash_base = (query.value(0)).toByteArray();
     qDebug()<<hash_base;
 
+
+
+
     if(hash_base == pass_hash){
-        QMessageBox::information(this, "Вход осуществлен", "Вы успешно авторизированны.");
+        //QMessageBox::information(this, "Вход осуществлен", "Вы успешно авторизированны.");
         *name = login;
         emit openWindow();
         db.close();
@@ -91,6 +120,7 @@ void Login_window::on_buttonEntry_clicked()
 
 
 /*
+    //запрос на добавление новых пользователей (костыль)
     //:/db/Password_manager_db.sqlite3
     //Осуществляем запрос
     QSqlQuery query;
@@ -123,6 +153,8 @@ void Login_window::on_buttonEntry_clicked()
 
 */
 }
+
+
 
 void Login_window::on_pushButton_clicked()
 {

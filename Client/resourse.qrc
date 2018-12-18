@@ -12,6 +12,9 @@
         <file>cross.ico</file>
         <file>check.png</file>
         <file>cross.png</file>
+        <file>document.ico</file>
+        <file>update-arrow.ico</file>
+        <file>settings-work-tool.ico</file>
     </qresource>
     <qresource prefix="/db">
         <file>Password_manager_db.sqlite3</file>
