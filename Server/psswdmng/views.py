@@ -84,7 +84,7 @@ def add_user(request):
 			user_obj = User.objects.get(User_name = request.POST['user'])
 			user_obj.Authentication_sequence = None
 			user_obj.save()
-		user_obj = User.objects.get(User_name = request.POST['username'])
+		user_obj = User.objects.get(User_name = request.POST['user'])
 		if(user_obj.Session_started == False):
 			return HttpResponse("Your session has already ended")
 		open_key_array = request.POST.getlist('openkey')
@@ -92,9 +92,9 @@ def add_user(request):
 		for ch in open_key_array:
 			open_key += int(ch).to_bytes(1, byteorder = 'little', signed = False)
 		passwordhash = request.POST['passwordhash']
-		print(type(passwordhash))
+		#print(type(passwordhash))
 		username = request.POST['username']
-		User.objects.create(User_name = username, Master_password_hash = passwordhash, Open_key = open_key)
+		User.objects.create(User_name = username, Master_password_hash = passwordhash, Open_key = open_key, Session_started = False)
 		return HttpResponse("User was added!")
 	except IntegrityError:
 		return HttpResponse("This user is already exist!")
