@@ -21,7 +21,7 @@ before_script:
 script:
   - cd Server
   - python ./manage.py test
-  - cd ..
+  - cd ..
 
 #  - python ./Server/manage.py makemigrations
 #  - python ./Server/manage.py migrate
