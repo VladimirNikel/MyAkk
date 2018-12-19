@@ -60,7 +60,7 @@ class ViewsTest(TestCase):
 		self.assertEqual(response.status_code, 200)
 		self.assertEqual(response.content, b"You're in start page")
 #2-------------------------------------------------------------------------------------------------------
-	def stest_get_password(self):
+	def test_get_password(self):
 		url = reverse('get_password')
 	
 		#test req method GET
@@ -153,13 +153,124 @@ class ViewsTest(TestCase):
 		self.assertEqual(response.content, b"This user is already exist!")
 #4-------------------------------------------------------------------------------------------------------
 	def test_authenticate(self):
-		pass
+		url = reverse('authenticate')
+
+		#test req method GET
+		response = self.client.get(url)
+		self.assertEqual(response.status_code, 200)
+		self.assertEqual(response.content, b"GET method is required! Send \'auth_seq\', \'username\' and \'passwordhash\'")
+		
+		#test req method POST
+		response = self.client.post(url)
+		self.assertEqual(response.status_code, 200)
+		self.assertEqual(response.content, b"GET method is required! Send \'auth_seq\', \'username\' and \'passwordhash\'")
+
+		#test req method GET with null data
+		test_data0 = {}
+		response = self.client.get(url, test_data0)
+		self.assertEqual(response.status_code, 200)
+		self.assertEqual(response.content, b"GET method is required! Send \'auth_seq\', \'username\' and \'passwordhash\'")
+		
+		#test authenticate with wrong data
+		test_data1 = {'auth_seq': [3, 2, 1, 1], 'username': 'sys', 'passwordhash': b'123'}
+		response = self.client.get(url, test_data1)
+		self.assertEqual(response.content, b"Authentification error!")
+
+		#test authenticate with right data and ended session
+		test_data2 = {'auth_seq': [3, 2, 1], 'username': 'sys', 'passwordhash': b'123'}
+		response = self.client.get(url, test_data2)
+		self.assertEqual(response.content, b"Your session has already ended")
+
+		#test authenticate with wrong pass and started session
+		_user = User.objects.get(User_name = 'sys')
+		_user.Session_started = True
+		_user.Authentication_sequence = b'\x03\x02\x01'
+		_user.save()
+		test_data2 = {'auth_seq': [3, 2, 1], 'username': 'sys', 'passwordhash': b'1234'}
+		response = self.client.get(url, test_data2)
+		self.assertEqual(response.content, b"0")
+
+		#test authenticate with right data and started session
+		_user = User.objects.get(User_name = 'sys')
+		_user.Session_started = True
+		_user.Authentication_sequence = b'\x03\x02\x01'
+		_user.save()
+		test_data2 = {'auth_seq': [3, 2, 1], 'username': 'sys', 'passwordhash': b'123'}
+		response = self.client.get(url, test_data2)
+		self.assertEqual(response.content, b"1")
 #5-------------------------------------------------------------------------------------------------------
 	def test_add_password(self):
-		pass
+		url = reverse('add_password')
+
+		#test req method GET
+		response = self.client.get(url)
+		self.assertEqual(response.status_code, 200)
+		self.assertEqual(response.content, b"POST method is required! Send \'auth_seq\', \'username\', \'url\', \'login\', \'password\'")
+		
+		#test req method POST
+		response = self.client.post(url)
+		self.assertEqual(response.status_code, 200)
+		self.assertEqual(response.content, b"POST method is required! Send \'auth_seq\', \'username\', \'url\', \'login\', \'password\'")
+
+		#test req method POST with null data
+		test_data0 = {}
+		response = self.client.post(url, test_data0)
+		self.assertEqual(response.status_code, 200)
+		self.assertEqual(response.content, b"POST method is required! Send \'auth_seq\', \'username\', \'url\', \'login\', \'password\'")
+		
+		#test add_password with wrong data
+		test_data1 = {'auth_seq': [3, 2, 1, 1], 'username': 'sys', 'url': 'someurl', 'login': 'somelogin', 'password': 'somepasswod'}
+		response = self.client.post(url, test_data1)
+		self.assertEqual(response.content, b"Authentification error!")
+
+		#test add_password with right data and ended session
+		test_data2 = {'auth_seq': [3, 2, 1], 'username': 'sys', 'url': 'someurl', 'login': 'somelogin', 'password': 'somepasswod'}
+		response = self.client.post(url, test_data2)
+		self.assertEqual(response.content, b"Your session has already ended")
+
+		#test add_user with wrong data and started session
+		_user = User.objects.get(User_name = 'sys')
+		_user.Session_started = True
+		_user.Authentication_sequence = b'\x03\x02\x01'
+		_user.save()
+		test_data2 = {'auth_seq': [3, 2, 1], 'username': 'sys', 'url': 'someurl', 'login': 'somelogin', 'password': 'somepasswod'}
+		response = self.client.post(url, test_data2)
+		self.assertEqual(response.content, b"This is already exist!")
+
+		#test add_user with new url and started session
+		_user = User.objects.get(User_name = 'sys')
+		_user.Session_started = True
+		_user.Authentication_sequence = b'\x03\x02\x01'
+		_user.save()
+		test_data2 = {'auth_seq': [3, 2, 1], 'username': 'sys', 'url': 'someurl1', 'login': 'somelogin', 'password': 'somepasswod'}
+		response = self.client.post(url, test_data2)
+		self.assertEqual(response.content, b"0")
+
+		#test add_user with new login and started session
+		_user = User.objects.get(User_name = 'sys')
+		_user.Session_started = True
+		_user.Authentication_sequence = b'\x03\x02\x01'
+		_user.save()
+		test_data2 = {'auth_seq': [3, 2, 1], 'username': 'sys', 'url': 'someurl1', 'login': 'somelogin1', 'password': 'somepasswod'}
+		response = self.client.post(url, test_data2)
+		self.assertEqual(response.content, b"0")
+
+		#test add_user with new url, new login and started session
+		_user = User.objects.get(User_name = 'sys')
+		_user.Session_started = True
+		_user.Authentication_sequence = b'\x03\x02\x01'
+		_user.save()
+		test_data2 = {'auth_seq': [3, 2, 1], 'username': 'sys', 'url': 'someurl2', 'login': 'somelogin2', 'password': 'somepasswod'}
+		response = self.client.post(url, test_data2)
+		self.assertEqual(response.content, b"0")
 #6-------------------------------------------------------------------------------------------------------
-	def test_get_authentication_sequence(self):
-		pass
+	def atest_get_authentication_sequence(self):
+		url = reverse('add_password')
+
+		#test add_password with right data and ended session
+		test_data2 = {'auth_seq': [3, 2, 1], 'user': 'sys', 'username': 'user1', 'url': 'someurl', 'login': 'somelogin', 'password': 'somepasswod'}
+		response = self.client.post(url, test_data2)
+		self.assertEqual(response.content, b"Your session has already ended")
 #7-------------------------------------------------------------------------------------------------------
 	def test_authentificate(self):
 		pass

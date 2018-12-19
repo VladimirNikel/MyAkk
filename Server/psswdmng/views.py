@@ -179,12 +179,15 @@ def add_password(request):
 			no_pair = True
 		if no_pair:
 			pair = Pair.objects.create(login_id = Login.objects.get(Login = login), resource_id = Resource.objects.get(URL = url))
-		elif not Pair.objects.filter(login_id = Login.objects.get(Login = login), resource_id = Resource.objects.get(URL = url)).exists():
-			pair = Pair.objects.create(login_id = Login.objects.get(Login = login), resource_id = Resource.objects.get(URL = url))
 		else:
 			pair = Pair.objects.get(login_id = Login.objects.get(Login = login), resource_id = Resource.objects.get(URL = url))
-		Main_record.objects.create(pair_id = pair, Password = password, user_id = User.objects.get(User_name = user), Change_date = datetime.datetime.now())
+		if not Main_record.objects.filter(pair_id = pair).exists():
+			Main_record.objects.create(pair_id = pair, Password = password, user_id = User.objects.get(User_name = user), Change_date = datetime.datetime.now())
+		else:
+			raise IntegrityError
 		return HttpResponse(0)
+	except IntegrityError:
+		return HttpResponse("This is already exist!")
 	except:
 		return HttpResponse("POST method is required! Send \'auth_seq\', \'username\', \'url\', \'login\', \'password\'");
 	
